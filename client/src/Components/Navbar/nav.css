@@ -1,0 +1,39 @@
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 25px;
+    background-color: black;
+    color: white;/* Change the text color as needed */ 
+  }
+  
+  .logo-container {
+    font-size: 1.5em;
+  }
+  
+  .navlink-container ul,
+  .auth-container ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navlink-container li,
+  .auth-container li {
+    margin-right: 20px;
+    padding: 10px;
+  }
+  
+  .navlink-container a,
+  .auth-container a {
+    text-decoration: none;
+    color: white; /* Change the link color as needed */
+    font-weight: bold;
+  }
+  
+  .navlink-container a:hover,
+  .auth-container a:hover {
+    color: rgb(198, 198, 198);
+  }
+  

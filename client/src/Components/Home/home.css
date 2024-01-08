@@ -1,0 +1,98 @@
+/* Landing Page */
+
+.landing-image{
+    width:100%;
+    position: relative;
+}
+
+.landing-heading{
+    position: absolute;
+    top:20%;
+    left:6%;
+    letter-spacing: 4px;
+    font-size: 6em;
+}
+
+.landing-sub{
+    position: absolute;
+    top:43%;
+    left:7%;
+    letter-spacing: 4px;
+    font-size: 1.5em;
+}
+
+.landing-explore-btn{
+    position: absolute;
+    top:60%;
+    left: 7%;
+    color: white;
+    background-color: black;
+    width:10%;
+  height:35px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.landing-explore-btn:hover{
+    color: white;
+    background-color: rgb(48, 48, 48);
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1200px) and (min-width:1000px) {
+    .landing-heading{
+        position: absolute;
+        letter-spacing: 4px;
+        font-size: 5em;
+    }
+    .landing-sub{
+        position: absolute;
+        top:40%;
+        letter-spacing: 4px;
+        font-size: 1.2em;
+    }
+    .landing-explore-btn{
+        top:55%;
+    }
+  }
+@media only screen and (max-width: 1000px) and (min-width:600px) {
+    .landing-heading{
+        position: absolute;
+        top:90px;
+        left:45px;
+        letter-spacing: 4px;
+        font-size: 3.5em;
+    }
+    .landing-sub{
+        position: absolute;
+        top:185px;
+        left:52px;
+        letter-spacing: 4px;
+        font-size: 1em;
+    }
+    .landing-explore-btn{
+        top:40%;
+        font-size: 12px;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .landing-heading{
+        position: absolute;
+        top:75px;
+        left:25px;
+        letter-spacing: 4px;
+        font-size: 3em;
+    }
+    .landing-sub{
+        position: absolute;
+        top:150px;
+        left:30px;
+        letter-spacing: 4px;
+        font-size: 0.8em;
+    }
+    .landing-explore-btn{
+        top:30%;
+        font-size: 12px;
+    }
+  }

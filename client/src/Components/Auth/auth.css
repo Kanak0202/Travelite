@@ -1,0 +1,32 @@
+.auth-form{
+    display: grid;
+    width: 50%;
+    margin:0 auto;
+    margin-top: 100px;
+}
+
+.input-box-container{
+    display: grid;
+}
+
+.input-box{
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.auth-btn{
+    background-color: black;
+    color: white;
+    width:10%;
+    margin:20px auto 0;
+    height:35px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.auth-btn:hover{
+    background-color: rgb(48, 48, 48);
+}
+
