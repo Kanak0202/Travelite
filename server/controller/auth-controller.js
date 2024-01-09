@@ -27,8 +27,10 @@ export const login = async(request, response)=>{
             }
             let match = await bcrypt.compare(request.body.password, user.password);
             if(match){
-                const userData = {name:user.name, email:user.email}
+                const userData = {name:user.name, email:user.email, userId:user._id}
                 return response.status(200).json({userData: userData});
+            }else if(!match){
+                return response.status(404).json({msg: "Invalid Password"});
             }
         }
     }catch(error){

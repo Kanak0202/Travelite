@@ -20,6 +20,15 @@ const Nav = () => {
     navigate("/");
   };
 
+  const viewProfile = ()=>{
+    // console.log("This opens up the user's profile");
+  }
+
+  const getFirstName = () => {
+    const spaceIndex = account.name.indexOf(" ");
+    return spaceIndex !== -1 ? account.name.substring(0, spaceIndex) : account.name;
+  };
+
   return (
     <div className="nav-container">
       <div className="logo-container">
@@ -56,6 +65,11 @@ const Nav = () => {
             <li>
               <Link className="" to="/" onClick={handleLogout}>
                 Logout
+              </Link>
+            </li>
+            <li>
+              <Link className="" to="/" onClick={viewProfile()}>
+                {getFirstName()}
               </Link>
             </li>
           </ul>

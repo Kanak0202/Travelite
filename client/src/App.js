@@ -7,6 +7,7 @@ import Landing from './Components/Home/Landing/Landing';
 import Login from './Components/Auth/Login';
 import Signup from './Components/Auth/Signup';
 import Explore from './Components/Explore/explore';
+import Add from './Components/Add Destination/Add';
 //context retrieval
 import DataProvider from './context/DataProvider';
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/add" element={<Add />} />
       </Routes>
     </BrowserRouter>
       <Footer />

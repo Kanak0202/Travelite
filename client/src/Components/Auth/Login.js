@@ -23,22 +23,25 @@ const Login = ()=>{
         setLoginData({...loginData, [e.target.name] : e.target.value});
     }
 
-    const login = async()=>{
-        let result = await fetch("http://localhost:8000/login",{
-                method:"post",
-                body:JSON.stringify(loginData),
-                headers:{
-                    'Content-type': 'application/json',
-                }
-            });
-            result = await result.json();
-            if(result.userData.email && result.userData.name){
-                setIncorrectDetails(false);
-                setAccount({email:result.userData.email, name:result.userData.name});
-                navigate("/");
-            }else if(!result.userData.email || !result.userData.name){
-                setIncorrectDetails(true);
+    const login = async () => {
+        let result = await fetch("http://localhost:8000/login", {
+            method: "post",
+            body: JSON.stringify(loginData),
+            headers: {
+                'Content-type': 'application/json',
             }
+        });
+        result = await result.json();
+        if (result.userData && result.userData.email && result.userData.name && result.userData.userId) {
+            setIncorrectDetails(false);
+            setAccount({ email: result.userData.email, name: result.userData.name, userId: result.userData.userId});
+            navigate("/");
+        } else if (result.msg === "Invalid Email or Password") {
+            setIncorrectDetails(true);
+        } else if (result.msg === "User not found in records") {
+            alert("Invalid credentials, please sign up first");
+            navigate("/signup");
+        }
     }
 
     const loginUser = ()=>{
@@ -54,7 +57,7 @@ const Login = ()=>{
         <div className="auth-form">
             <h1>Login</h1>
             <div className="input-box-container">
-                {incorrectDetails ? <p>Either email or password incorrect</p> : <></>}
+                {incorrectDetails ? <p>Invalid Password</p> : <></>}
                 <input type="email" className="input-box" placeholder="Enter email" onChange={(e)=>{onInputChange(e)}} name="email" value={loginData.email}></input>
                 <input type="password" className="input-box" placeholder="Enter password" onChange={(e)=>{onInputChange(e)}} name="password" value={loginData.password}></input>
                 <button type="submit" className="auth-btn" onClick={()=>loginUser()}>Login</button>
