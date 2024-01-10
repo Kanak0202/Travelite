@@ -62,6 +62,8 @@ const Login = ()=>{
                 <input type="password" className="input-box" placeholder="Enter password" onChange={(e)=>{onInputChange(e)}} name="password" value={loginData.password}></input>
                 <button type="submit" className="auth-btn" onClick={()=>loginUser()}>Login</button>
             </div>
+            <div className="whitespace">
+            </div>
     </div>
     );
 }
