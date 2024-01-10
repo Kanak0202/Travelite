@@ -29,3 +29,15 @@ export const add = async (request, response) => {
     }
 };
 
+
+export const getUniquePlaces = async(request, response)=>{
+    try{
+        const places = await Destination.find({},'place').distinct('place');
+        if(!places){
+            return response.status(404).json({msg:"No places to show"});
+        }
+        return response.status(200).json(places);
+    }catch(error){
+        return response.status(500).json(error.message);
+    }
+}

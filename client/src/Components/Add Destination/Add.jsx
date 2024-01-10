@@ -64,7 +64,7 @@ const Add = () => {
                 <input type="text" className="input-box" placeholder="State or province located in" onChange={(e)=>{onInputChange(e)}} name="state" value={destinationData.state}></input>
                 <input type="text" className="input-box" placeholder="City or district or town located in" onChange={(e)=>{onInputChange(e)}} name="city" value={destinationData.city}></input>
                 <input type="text" className="input-box" placeholder="Country located in" onChange={(e)=>{onInputChange(e)}} name="country" value={destinationData.country}></input>
-                <input type="number" className="input-box" placeholder="Budget required (in INR)" onChange={(e)=>{onInputChange(e)}} name="budget" value={destinationData.budget}></input>
+                <input type="number" className="input-box" placeholder="Budget required for 2 persons (in INR)" onChange={(e)=>{onInputChange(e)}} name="budget" value={destinationData.budget}></input>
                 <input type="number" className="input-box" placeholder="Days required" onChange={(e)=>{onInputChange(e)}} name="daysRequired" value={destinationData.daysRequired}></input>
                 <input type="text" className="input-box" placeholder="Brief description of the culture (max 30 words)" onChange={(e)=>{onInputChange(e)}} name="briefDescription" value={destinationData.briefDescription}></input>
                 <input type="text" className="input-box" placeholder="Detailed review" onChange={(e)=>{onInputChange(e)}} name="detailedReview" value={destinationData.detailedReview}></input>
