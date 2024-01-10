@@ -41,3 +41,24 @@ export const getUniquePlaces = async(request, response)=>{
         return response.status(500).json(error.message);
     }
 }
+
+export const searchPlace = async(request, response)=>{
+    try{
+        let result = await Destination.find({
+            "$or":[
+                {place:{$regex:request.params.key, $options:'i'}},
+                {city:{$regex:request.params.key, $options:'i'}},
+                {state:{$regex:request.params.key, $options:'i'}},
+                {country:{$regex:request.params.key, $options:'i'}}
+            ]
+        }).distinct('place');
+        if(result){
+            response.send(result);
+        }
+        else{
+            response.send({result:"Data not found"});
+        }
+    }catch(error){
+        return response.status(500).json(error.message)
+    }
+} 
