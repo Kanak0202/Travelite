@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {useNavigate} from "react-router-dom";
 import emptiness from "./img/emptmain.png";
 import background from "./img/background.jpg";
 import loadPlane from "./img/loadPlane.gif";
@@ -11,6 +12,8 @@ const Explore = () => {
   const [loading, setLoading] = useState(true);
   const [key, setKey] = useState("");
   const [searchPlaces, setSearchPlaces] = useState([]);
+
+  const navigate = useNavigate();
 
   const retrievePlaceNames = async () => {
     try {
@@ -67,7 +70,6 @@ const Explore = () => {
   const searchDestination = async(e)=>{
     let searchKey = e.target.value;
     if(searchKey){
-      console.log(searchKey);
       setKey(searchKey);
       let result = await fetch(`http://localhost:8000/search/${searchKey}`);
       result = await result.json();
@@ -76,6 +78,10 @@ const Explore = () => {
       setKey("");
       setSearchPlaces([]);
     }
+  }
+
+  const openReviewsPage = (place)=>{
+    navigate(`/explore/${place}`);
   }
 
   return (
@@ -100,7 +106,7 @@ const Explore = () => {
 {!loading && (searchPlaces.length > 0 || (key === "" && places.length > 0)) && (
   <div className="all-places-container">
     {(searchPlaces.length > 0 ? searchPlaces : places).map((place, index) => (
-      <div className="place-container" key={index} style={{ backgroundImage: placeWithPhoto[place], backgroundSize: 'cover' }}>
+      <div className="place-container" key={index} style={{ backgroundImage: placeWithPhoto[place], backgroundSize: 'cover' }} onClick={()=>openReviewsPage(place)}>
         <p className="place-name">{place}</p>
       </div>
     ))}

@@ -10,6 +10,7 @@ import Explore from './Components/Explore/explore';
 import Add from './Components/Add Destination/Add';
 //context retrieval
 import DataProvider from './context/DataProvider';
+import PlaceReviews from './Components/Reviews/PlaceReviews';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/add" element={<Add />} />
+        <Route path="/explore/:place" element={<PlaceReviews />} />
       </Routes>
     </BrowserRouter>
       <Footer />
