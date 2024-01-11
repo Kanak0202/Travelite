@@ -57,7 +57,7 @@ const Login = ()=>{
         <div className="auth-form">
             <h1>Login</h1>
             <div className="input-box-container">
-                {incorrectDetails ? <p>Invalid Password</p> : <></>}
+                {incorrectDetails ? <p>Invalid email or password</p> : <></>}
                 <input type="email" className="input-box" placeholder="Enter email" onChange={(e)=>{onInputChange(e)}} name="email" value={loginData.email}></input>
                 <input type="password" className="input-box" placeholder="Enter password" onChange={(e)=>{onInputChange(e)}} name="password" value={loginData.password}></input>
                 <button type="submit" className="auth-btn" onClick={()=>loginUser()}>Login</button>

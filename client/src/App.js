@@ -11,6 +11,8 @@ import Add from './Components/Add Destination/Add';
 //context retrieval
 import DataProvider from './context/DataProvider';
 import PlaceReviews from './Components/Reviews/PlaceReviews';
+import SingleReview from './Components/Reviews/SingleReview';
+import PrivateComponent from './Components/PrivateComponent';
 
 
 function App() {
@@ -24,8 +26,11 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/add" element={<Add />} />
         <Route path="/explore/:place" element={<PlaceReviews />} />
+        <Route element={<PrivateComponent />}>
+        <Route path="/add" element={<Add />} />
+        <Route path="/review/:id" element={<SingleReview />} />
+        </Route>
       </Routes>
     </BrowserRouter>
       <Footer />
