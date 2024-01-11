@@ -4,7 +4,7 @@ import User from "./User.js";
 const destinationSchema = mongoose.Schema({
     userId:{
         type: mongoose.ObjectId,
-        ref: 'User',
+        ref: User,
         required:true
     },
     place:{
@@ -30,6 +30,10 @@ const destinationSchema = mongoose.Schema({
     budget:{
         type:Number,
         required:true
+    },
+    daysRequired:{
+      type:Number,
+      required:true  
     },
     dateCreated:{
         type:Date, 
