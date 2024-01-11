@@ -66,7 +66,18 @@ export const searchPlace = async(request, response)=>{
 export const placeReviews = async(request, response)=>{
     try{
         let result = await Destination.find({place:request.params.key}).populate("userId", "name");
-        console.log(result);
+    if(!result){
+        return response.status(404).json({msg:"Can't find data to retrieve"});
+    }
+    return response.status(200).json(result);
+    }catch(error){
+        return response.status(500).json(error.message);
+    }
+}
+
+export const singleReview = async(request, response)=>{
+    try{
+        let result = await Destination.find({_id:request.params.key}).populate("userId", "name");
     if(!result){
         return response.status(404).json({msg:"Can't find data to retrieve"});
     }

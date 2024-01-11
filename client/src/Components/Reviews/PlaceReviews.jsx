@@ -26,7 +26,6 @@ const PlaceReviews = () => {
   };
 
   const getPhoto = async (place) => {
-    console.log("Inside get photo");
     try {
       const result = await fetch(
         `https://api.unsplash.com/photos/random?query=${place}&client_id=oUDKMpWw-r3RgxE_moAyCahz7EiCbx9s9lE5kP4e2Gk`

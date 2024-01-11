@@ -50,6 +50,10 @@ const destinationSchema = mongoose.Schema({
     likeCount:{
         type:Number,
         default:0
+    },
+    photoLink:{
+        type:String,
+        default:0
     }
 });
 

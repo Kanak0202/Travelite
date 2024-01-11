@@ -14,6 +14,7 @@ const destinationInitialValue = {
     daysRequired:"",
     briefDescription:"",
     detailedReview:"",
+    photoLink:""
 }
 
 const Add = () => {
@@ -68,6 +69,7 @@ const Add = () => {
                 <input type="number" className="input-box" placeholder="Days required" onChange={(e)=>{onInputChange(e)}} name="daysRequired" value={destinationData.daysRequired}></input>
                 <input type="text" className="input-box" placeholder="Brief description of the culture (max 30 words)" onChange={(e)=>{onInputChange(e)}} name="briefDescription" value={destinationData.briefDescription}></input>
                 <input type="text" className="input-box" placeholder="Detailed review" onChange={(e)=>{onInputChange(e)}} name="detailedReview" value={destinationData.detailedReview}></input>
+                <input type="text" className="input-box" placeholder="Photos' drive link (optional)" onChange={(e)=>{onInputChange(e)}} name="photoLink" value={destinationData.photoLink}></input>
                 <button type="submit" className="auth-btn" onClick = {()=>submitDestination()}>Add</button>
             </div>
         </div>
