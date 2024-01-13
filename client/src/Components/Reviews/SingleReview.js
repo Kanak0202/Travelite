@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import "./single.css";
 //icons
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 //context
 import { DataContext } from "../../context/DataProvider";
 
@@ -12,6 +13,15 @@ const SingleReview = () => {
   const [review, setReview] = useState({});
   const {account} = useContext(DataContext);
   const [likeCount, setLikeCount] = useState(0);
+  const [likedByUser, setLikedByuser] = useState(false);
+
+  const checkIfLiked = ()=>{
+    for(let i = 0;i<review[0]?.likedBy.length;i++){
+      if(review[0]?.likedBy[i] === account.userId){
+        setLikedByuser(true);
+      }
+    }
+  }
 
   const getReview = async () => {
     try {
@@ -25,6 +35,12 @@ const SingleReview = () => {
       if(data[0].likeCount>0){
         setLikeCount(data[0]?.likeCount);
       }
+      for(let i = 0;i<data[0]?.likedBy.length;i++){
+        if(data[0]?.likedBy[i] === account.userId){
+          setLikedByuser(true);
+        }
+      }
+      checkIfLiked();
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -54,7 +70,19 @@ const likeDislike = async()=>{
     }
     const data = await result.json();
     console.log(data);
-    setLikeCount(data);
+    setLikeCount(data.likeCount);
+    if(data.likeCount>0){
+      for(let i = 0;i<data.likedBy.length;i++){
+        if(data.likedBy[i] === account.userId){
+          setLikedByuser(true);
+        }else{
+          setLikedByuser(false);
+        }
+      }
+    }else{
+      setLikedByuser(false);
+    }
+    
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -67,7 +95,7 @@ const likeDislike = async()=>{
       
       <div className="info-container">
       <div>
-      {likeCount ? <p>{likeCount} people found this review helpful</p> : <></>}
+      {likeCount ? <p><span style={{fontWeight:600, fontSize:"17px"}}>{likeCount} </span>people found this review <span style={{fontWeight:600}}>helpful</span></p> : <></>}
       </div>
       <div className="user-info">
         <p style={{margin:0}}><span style={{fontSize:"16px", fontWeight:500}}>by</span> {review[0]?.userId.name}</p>
@@ -79,10 +107,10 @@ const likeDislike = async()=>{
       </div>
       <div className="card-container">
         <div className="card">
-            <p style={{margin:0, fontSize:"20px", fontWeight:800}}>{review[0]?.touristAttractions}</p>
+            <p style={{margin:0, fontSize:"19px", fontWeight:800, lineHeight:"30px"}}>{review[0]?.touristAttractions}</p>
         </div>
         <div className="card">
-    <a href={review[0]?.photoLink} target="_blank" rel="noopener noreferrer">
+    <a href={review[0]?.photoLink} style={{textDecoration:"none", color:"black", fontSize:"25px"}} target="_blank" rel="noopener noreferrer">
         View Photos
     </a>
 </div>
@@ -97,7 +125,13 @@ const likeDislike = async()=>{
       </div>
       <div className="like-review-container">
         <p style={{margin:0, fontSize:"16px", fontWeight:600}}>Liked this review? Give a thumbs up</p>
-        <button className="like-btn" style={{marginLeft:"10px"}} onClick={likeDislike}><ThumbUpOutlinedIcon className="icon" color="primary"/></button>
+        <button className="like-btn" style={{ marginLeft: "10px" }} onClick={likeDislike}>
+  {likedByUser ? (
+    <ThumbUpIcon className="icon" color="primary" />
+  ) : (
+    <ThumbUpOutlinedIcon className="icon" color="primary" />
+  )}
+</button>
       </div>
     </div>
   );
