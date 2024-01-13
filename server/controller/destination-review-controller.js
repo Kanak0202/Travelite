@@ -86,3 +86,31 @@ export const singleReview = async(request, response)=>{
         return response.status(500).json(error.message);
     }
 }
+
+export const likeDislikeReview = async (request, response) => {
+    try {
+        const reviewId = request.params.id;
+        const userId = request.body.userId;
+        const filter = { _id: reviewId };
+        let destination = await Destination.findById(reviewId);
+
+        if (!destination) {
+            return response.status(404).json({ msg: "Can't find data to retrieve" });
+        }
+
+        // Check if the userId is already in the likedBy array
+        if (!destination.likedBy.includes(userId)) {
+            destination.likedBy.push(userId);
+        } else {
+            destination.likedBy = destination.likedBy.filter(id => id !== userId);
+        }
+
+        const update = { likedBy: destination.likedBy, likeCount: destination.likedBy.length};
+        let result = await Destination.findOneAndUpdate(filter, update, { new: true });
+
+        return response.status(200).json(result.likeCount);
+    } catch (error) {
+        return response.status(500).json(error.message);
+    }
+};
+

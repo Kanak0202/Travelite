@@ -47,6 +47,10 @@ const destinationSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    likedBy:{
+        type:[String],
+        default:[]
+    },
     likeCount:{
         type:Number,
         default:0
