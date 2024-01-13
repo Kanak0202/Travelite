@@ -108,7 +108,7 @@ export const likeDislikeReview = async (request, response) => {
         const update = { likedBy: destination.likedBy, likeCount: destination.likedBy.length};
         let result = await Destination.findOneAndUpdate(filter, update, { new: true });
 
-        return response.status(200).json(result.likeCount);
+        return response.status(200).json({likeCount:result.likeCount, likedBy:result.likedBy});
     } catch (error) {
         return response.status(500).json(error.message);
     }
