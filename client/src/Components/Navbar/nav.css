@@ -5,6 +5,7 @@
     padding: 5px 25px;
     background-color: black;
     color: white;/* Change the text color as needed */ 
+    position: relative;
   }
   
   .logo-container {
@@ -35,5 +36,36 @@
   .navlink-container a:hover,
   .auth-container a:hover {
     color: rgb(198, 198, 198);
+  }
+
+  .profile-dropdown{
+    position: absolute;
+    top:50px;
+    right:40px;
+    color: black;
+    width:12%;
+    z-index: 10;
+  }
+
+  .blank{
+    height: 40px;
+  }
+
+  .dropdown{
+    border:2px solid rgb(192, 190, 190);
+    background-color: rgb(234, 234, 234);
+    border-radius: 5%;
+    padding: 10px;
+  }
+
+  .list-item-dropdown{
+    padding: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin:15px 0;
+  }
+  .list-item-dropdown:hover{
+    color: rgb(59, 59, 59);
   }
   

@@ -18,6 +18,7 @@ const destinationInitialValue = {
 }
 
 const Add = () => {
+    sessionStorage.setItem("previousPage", window.location.pathname);
     const [destinationData, setDestinationData] = useState(destinationInitialValue);
     const { account, setAccount } = useContext(DataContext);
 

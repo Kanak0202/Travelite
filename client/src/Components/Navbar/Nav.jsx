@@ -8,6 +8,7 @@ import "./nav.css";
 
 const Nav = () => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const { account, setAccount } = useContext(DataContext);
   const navigate = useNavigate();
 
@@ -67,10 +68,20 @@ const Nav = () => {
                 Logout
               </Link>
             </li>
-            <li>
+            <li onMouseEnter={() => setShowProfileDropdown(true)} onMouseLeave={() => setShowProfileDropdown(false)}>
               <Link className="" to="/" onClick={viewProfile()}>
                 {getFirstName()}
               </Link>
+              {showProfileDropdown && (
+          <div className="profile-dropdown">
+          <div className="blank"></div>
+          <div className="dropdown">
+            <div className="list-item-dropdown" onClick={() => navigate(`/profile/${account.userId}`)}>Profile</div>
+            <div className="list-item-dropdown" onClick={() => navigate('/my-uploads')}>My uploads</div>
+            <div className="list-item-dropdown" onClick={() => navigate('/places-visited')}>Places Visited</div>
+          </div>
+          </div>
+        )}
             </li>
           </ul>
         </div>

@@ -7,6 +7,7 @@ import balloons1 from "./img/balloons1.jpg";
 import "./explore.css";
 
 const Explore = () => {
+  sessionStorage.setItem("previousPage", window.location.pathname);
   const [places, setPlaces] = useState([]);
   const [placeWithPhoto, setPlaceWithPhoto] = useState({});
   const [loading, setLoading] = useState(true);
