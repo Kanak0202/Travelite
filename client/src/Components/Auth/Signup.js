@@ -16,7 +16,7 @@ const signupInitialValues = {
 const Signup = ()=>{
     const [signup, setSignup] = useState(signupInitialValues);
     const [match, setMatch] = useState(true);
-
+    sessionStorage.setItem("previousPage", window.location.pathname);
     const navigate = useNavigate();
 
     const onInputChange = (e)=>{
@@ -37,7 +37,6 @@ const Signup = ()=>{
                 navigate("/login");
             }
             if(result){
-                localStorage.setItem("user", JSON.stringify(result));
                 navigate("/login");
             }
     }

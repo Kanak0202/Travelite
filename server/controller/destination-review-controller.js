@@ -77,7 +77,7 @@ export const placeReviews = async(request, response)=>{
 
 export const singleReview = async(request, response)=>{
     try{
-        let result = await Destination.find({_id:request.params.key}).populate("userId", "name");
+        let result = await Destination.find({ _id: request.params.key }).populate("userId", ["name", "_id"]);
     if(!result){
         return response.status(404).json({msg:"Can't find data to retrieve"});
     }

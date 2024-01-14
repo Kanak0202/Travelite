@@ -85,3 +85,8 @@
     justify-content: center;
     margin-left: 15px;
 }
+
+.review-user:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}

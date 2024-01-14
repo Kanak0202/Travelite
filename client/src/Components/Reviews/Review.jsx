@@ -34,7 +34,7 @@ const Review = (props)=>{
                 <img src={user} alt="" />
             </div>
             <div className="reviewer-info">
-            <p style={{fontWeight:"600", margin:0}}>{review.userId.name}</p>
+            <p className="review-user" style={{fontWeight:"600", margin:0}} onClick={()=>navigate(`/profile/${review.userId._id}`)}>{review.userId.name}</p>
             <p style={{marginTop:1, fontSize:"14px"}}>on {getDate()}</p>
             </div>
         </div>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import "../home.css";
 
 const Landing = ()=>{
+    sessionStorage.setItem("previousPage", window.location.pathname);
     const navigate = useNavigate();
     const goToExplore = ()=>{
         navigate('/explore');

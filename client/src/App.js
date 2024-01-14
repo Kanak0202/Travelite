@@ -13,6 +13,7 @@ import DataProvider from './context/DataProvider';
 import PlaceReviews from './Components/Reviews/PlaceReviews';
 import SingleReview from './Components/Reviews/SingleReview';
 import PrivateComponent from './Components/PrivateComponent';
+import Profile from './Components/User Info/Profile';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route element={<PrivateComponent />}>
         <Route path="/add" element={<Add />} />
         <Route path="/review/:id" element={<SingleReview />} />
+        <Route path="/profile/:id" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

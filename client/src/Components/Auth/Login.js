@@ -35,7 +35,12 @@ const Login = ()=>{
         if (result.userData && result.userData.email && result.userData.name && result.userData.userId) {
             setIncorrectDetails(false);
             setAccount({ email: result.userData.email, name: result.userData.name, userId: result.userData.userId});
+            const previousPage = sessionStorage.getItem("previousPage");
+        if (previousPage === "/signup") {
+            navigate("/");
+        } else {
             navigate(-1);
+        }
         } else if (result.msg === "Invalid Email or Password") {
             setIncorrectDetails(true);
         } else if (result.msg === "User not found in records") {
