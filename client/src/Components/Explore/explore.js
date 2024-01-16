@@ -81,9 +81,29 @@ const Explore = () => {
     }
   }
 
-  const openReviewsPage = (place)=>{
-    navigate(`/explore/${place}`);
-  }
+  const openReviewsPage = async (place) => {
+    try {
+      navigate(`/explore/${place}`);
+      const apiRequest = fetch(`http://localhost:8000/place/${place}`, {
+        method: "PATCH",
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+  
+      const [apiResponse] = await Promise.all([apiRequest]);
+  
+      if (apiResponse.ok) {
+        const data = await apiResponse.json();
+        console.log(data);
+      } else {
+        console.error('API Request Error:', apiResponse.statusText);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
 
   return (
     <div>

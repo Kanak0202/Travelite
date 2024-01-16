@@ -57,7 +57,7 @@ const destinationSchema = mongoose.Schema({
     },
     photoLink:{
         type:String,
-        default:0
+        default:""
     }
 });
 
