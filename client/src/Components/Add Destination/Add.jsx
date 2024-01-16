@@ -36,26 +36,41 @@ const Add = () => {
         }
     }
 
-    const addDestination = async()=>{
+    const addDestination = async () => {
         const dataToSend = {
-            ...destinationData,
-            userId: account.userId,
+          ...destinationData,
+          userId: account.userId,
         };
-        // console.log(dataToSend);
-        let result = await fetch("http://localhost:8000/add",{
-                method:"post",
-                body:JSON.stringify(dataToSend),
-                headers:{
-                    'Content-type': 'application/json',
-                }
-            });
-            result = await result.json();
-            if(result){
-                alert("Destination Added");
-                navigate("/explore");
-                setDestinationData(destinationInitialValue);
-            }
-    }
+      
+        try {
+          let result = await fetch("http://localhost:8000/add", {
+            method: "POST",
+            body: JSON.stringify(dataToSend),
+            headers: {
+              'Content-type': 'application/json',
+            },
+          });
+      
+          if (!result.ok) {
+            console.error("Error adding destination:", result.statusText);
+            // Handle error here, show an alert or log the error
+            return;
+          }
+      
+          result = await result.json();
+          console.log(result);
+      
+          if (result) {
+            alert("Destination Added");
+            navigate("/explore");
+            // setDestinationData(destinationInitialValue);
+          }
+        } catch (error) {
+            console.log(error.response.data);
+          console.error("Error adding destination:", error.message);
+          // Handle error here, show an alert or log the error
+        }
+      };
 
     return (
         <div className="auth-form">

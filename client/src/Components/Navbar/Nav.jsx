@@ -2,6 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // context data
 import { DataContext } from "../../context/DataProvider";
+//icons
+import LogoutIcon from '@mui/icons-material/Logout';
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import PlaceIcon from '@mui/icons-material/Place';
 
 // css
 import "./nav.css";
@@ -64,8 +69,8 @@ const Nav = () => {
         <div className="auth-container">
           <ul>
             <li>
-              <Link className="" to="/" onClick={handleLogout}>
-                Logout
+              <Link className="" to="/contact" onClick={()=>navigate("/contact")}>
+                Contact Us
               </Link>
             </li>
             <li onMouseEnter={() => setShowProfileDropdown(true)} onMouseLeave={() => setShowProfileDropdown(false)}>
@@ -76,9 +81,22 @@ const Nav = () => {
           <div className="profile-dropdown">
           <div className="blank"></div>
           <div className="dropdown">
-            <div className="list-item-dropdown" onClick={() => navigate(`/profile/${account.userId}`)}>Profile</div>
-            <div className="list-item-dropdown" onClick={() => navigate('/my-uploads')}>My uploads</div>
-            <div className="list-item-dropdown" onClick={() => navigate('/places-visited')}>Places Visited</div>
+            <div className="list-item-dropdown" onClick={() => navigate(`/profile/${account.userId}`)}>
+              <AccountBoxIcon style={{marginRight:"10px", fontSize:"20px"}}/>
+              <p>My Profile</p>
+            </div>
+            <div className="list-item-dropdown" onClick={() => navigate('/my-uploads')}>
+                <RateReviewIcon style={{marginRight:"10px", fontSize:"20px"}}/>
+                <p>My Uploads</p>
+            </div>
+            <div className="list-item-dropdown" onClick={() => navigate('/places-visited')}>
+              <PlaceIcon style={{marginRight:"10px", fontSize:"20px"}} />
+              <p>Places Visited</p>
+            </div>
+            <div className="list-item-dropdown" onClick={handleLogout}>
+            <LogoutIcon style={{marginRight:"10px", fontSize:"20px"}}/>
+            <p>Logout</p>
+            </div>
           </div>
           </div>
         )}

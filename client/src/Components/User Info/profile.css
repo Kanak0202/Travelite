@@ -1,0 +1,42 @@
+.profile-main-container{
+}
+
+.profile-cover-photo{
+    height: 30vh;
+    width: 100%;
+    position: relative;
+  }
+  
+  .cover-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: bottom;
+  }
+
+  .user-image-container{
+    position: absolute;
+    height:100px;
+    width: 100px;
+    border-radius: 100%;
+    border: 2px solid black;
+    top:33%;
+    left: calc(50% - 50px);
+  }
+  .user-image-container img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+    object-position: center;
+  }
+  
+  .info-section{
+    margin-top: 50px;
+  }
+
+  .top-reviews-container{
+    width:86%;
+    margin:auto;
+    margin-top: 100px;
+  }

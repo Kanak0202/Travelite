@@ -43,7 +43,7 @@
     top:50px;
     right:40px;
     color: black;
-    width:12%;
+    width:14%;
     z-index: 10;
   }
 
@@ -55,17 +55,17 @@
     border:2px solid rgb(192, 190, 190);
     background-color: rgb(234, 234, 234);
     border-radius: 5%;
-    padding: 10px;
+    padding: 20px;
   }
 
   .list-item-dropdown{
-    padding: 5px;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    margin:15px 0;
+    display: flex;
+    align-items: center;
   }
   .list-item-dropdown:hover{
-    color: rgb(59, 59, 59);
+    color: rgb(107, 107, 107);
   }
   

@@ -96,3 +96,55 @@
         font-size: 12px;
     }
   }
+
+/* Most Viewed */
+
+.most-place-container{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin:auto;
+    color: white;
+    font-size: 200%;
+}
+
+.main-container-most{
+    width: 90%;
+    text-align: left;
+    margin:auto;
+    margin-top: 70px;
+    padding-left: 45px;
+}
+
+.place{
+    border-radius: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:250px;
+    width:400px;
+    margin:auto;
+    cursor: pointer;
+}
+
+.place:hover{
+    box-shadow: 2px 2px 2px 1px rgb(160, 160, 160);
+}
+
+.blink {
+    font-size: 50px;
+    margin-right: 10px;
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation 1s steps(5, start) infinite;
+  }
+  @keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+

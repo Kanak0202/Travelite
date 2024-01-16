@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Review from "./Review";
 import defaultBackground from "./img/defaultBackground.jpg";
 //css
 import "./review.css";
+//icons
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 const PlaceReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [background, setBackground] = useState(defaultBackground);
+  const navigate = useNavigate();
 
   const params = useParams();
 
@@ -53,8 +56,18 @@ const PlaceReviews = () => {
     retrieveReviews();
   }, [params.place]);
 
+  const popupVisible = (call)=>{
+    console.log(call);
+    var elem = document.getElementById('popupId');
+    if(call==="visible"){
+    elem.style.display = 'block';
+    }else if(call === "close"){
+      elem.style.display = 'none';
+    }
+  }
+
   return (
-    <div>
+    <div className="place-review-page">
       <div
         className="container"
         style={{
@@ -69,9 +82,19 @@ const PlaceReviews = () => {
       </div>
       <div className="all-reviews-container">
         {reviews.map((review, index) => (
-          <Review key={index} review={review} />
+          <Review key={index} review={review} func={popupVisible}/>
         ))}
       </div>
+      <div className="login-popup fade-in" id="popupId">
+      <div className="close-btn-container" onClick={()=>popupVisible("close")}>
+        <CancelOutlinedIcon style={{fontSize:"18px"}}/>
+      </div>
+      <p style={{fontSize:"170%"}}>Missing out on the fun? </p>
+      <p style={{fontSize:"120%"}}>Dive into excitement by simply logging in to Travelite</p>
+      
+      <button className="auth-btn" style={{width:"30%"}} onClick={()=>navigate('/login')}>Login</button>
+      <p  style={{margin:"20px", marginTop:"30px"}}>Not a user already😟? <a style={{color:"black", marginLeft:"5px", fontSize:"18px"}} href="/signup">Sign Up</a></p>
+    </div>
     </div>
   );
 };
