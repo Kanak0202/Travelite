@@ -15,6 +15,8 @@ import SingleReview from './Components/Reviews/SingleReview';
 import PrivateComponent from './Components/PrivateComponent';
 import Profile from './Components/User Info/Profile';
 import ScrollToTop from './ScrollToTop';
+import Uploads from './Components/User Info/Uploads';
+import UpdateReview from './Components/Reviews/Update/UpdateReview';
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
         <Route path="/add" element={<Add />} />
         <Route path="/review/:id" element={<SingleReview />} />
         <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/my-uploads/:id" element={<Uploads />} />
+        <Route path="/update-review/:id" element={<UpdateReview />} />
         </Route>
       </Routes>
     </BrowserRouter>

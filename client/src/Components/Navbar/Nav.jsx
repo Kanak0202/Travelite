@@ -85,7 +85,7 @@ const Nav = () => {
               <AccountBoxIcon style={{marginRight:"10px", fontSize:"20px"}}/>
               <p>My Profile</p>
             </div>
-            <div className="list-item-dropdown" onClick={() => navigate('/my-uploads')}>
+            <div className="list-item-dropdown" onClick={() => navigate(`/my-uploads/${account.userId}`)}>
                 <RateReviewIcon style={{marginRight:"10px", fontSize:"20px"}}/>
                 <p>My Uploads</p>
             </div>
