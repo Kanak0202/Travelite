@@ -101,3 +101,15 @@ export const likeDislikeReview = async (request, response) => {
     }
 };
 
+export const updateReview = async(request, response) =>{
+    try{
+        let result = await Destination.updateOne({_id:request.params.id}, {$set: request.body });
+        if(!result){
+            return response.status(404).json({msg:"Review not found and updated"});
+        }
+        return response.status(200).json({msg:"Review updated successfully"});
+    }catch(error){
+        return response.status(500).json(error.message);
+    }
+}
+

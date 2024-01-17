@@ -57,6 +57,8 @@ const Profile = ()=>{
                     </div>
                 </div>
             </div>
+            
+            <hr style={{width:"86%", textAlign:"left", marginTop:"100px"}}/>
             <TopReviews />
         </div>
     );

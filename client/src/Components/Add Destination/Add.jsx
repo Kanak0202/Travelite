@@ -1,5 +1,5 @@
-import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 // context data
 import { DataContext } from "../../context/DataProvider";
 
@@ -17,10 +17,11 @@ const destinationInitialValue = {
     photoLink:""
 }
 
-const Add = () => {
+const Add = (props) => {
     sessionStorage.setItem("previousPage", window.location.pathname);
     const [destinationData, setDestinationData] = useState(destinationInitialValue);
     const { account, setAccount } = useContext(DataContext);
+    const params = useParams();
 
     const onInputChange = (e)=>{
         setDestinationData({...destinationData, [e.target.name] : e.target.value});
@@ -53,28 +54,67 @@ const Add = () => {
       
           if (!result.ok) {
             console.error("Error adding destination:", result.statusText);
-            // Handle error here, show an alert or log the error
             return;
           }
       
           result = await result.json();
-          console.log(result);
       
           if (result) {
             alert("Destination Added");
             navigate("/explore");
-            // setDestinationData(destinationInitialValue);
+            setDestinationData(destinationInitialValue);
           }
         } catch (error) {
-            console.log(error.response.data);
           console.error("Error adding destination:", error.message);
-          // Handle error here, show an alert or log the error
         }
       };
 
+      const getReview = async () => {
+        try {
+          let result = await fetch(`http://localhost:8000/review/${params.id}`);
+          if (!result.ok) {
+            console.log("Error fetching data");
+            return;
+          }
+          const data = await result.json();
+          setDestinationData(data[0]);
+        } catch (error) {
+          console.error("Error fetching data:", error.message);
+        }
+      };
+
+      useEffect(()=>{
+        if(props.page === "updateReview"){
+          getReview();
+        }
+      }, [params.id])
+
+      const updateReview = async()=>{
+        try{
+          let result = await fetch(`http://localhost:8000/update-review/${params.id}`,{
+            method:"PUT",
+            body: JSON.stringify(destinationData),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          if (!result.ok) {
+            console.log("Error fetching data");
+            return;
+          }
+          const data = await result.json();
+        }catch(error){
+          console.error("Error fetching data:", error.message);
+        }
+      }
+
     return (
         <div className="auth-form">
-            <h1>Share the Majestics</h1>
+            {props.page === "updateReview"
+            ?
+            <h1>Update your Review</h1>
+            :
+            <h1>Share the Majestics</h1>}
             <div className="input-box-container">
                 <input type="text" className="input-box" placeholder="Name of place" onChange={(e)=>{onInputChange(e)}} name="place" value={destinationData.place}></input>
                 <input type="text" className="input-box" placeholder="Best tourist attractions" onChange={(e)=>{onInputChange(e)}} name="touristAttractions" value={destinationData.touristAttractions}></input>
@@ -84,9 +124,15 @@ const Add = () => {
                 <input type="number" className="input-box" placeholder="Budget required for 2 persons (in INR)" onChange={(e)=>{onInputChange(e)}} name="budget" value={destinationData.budget}></input>
                 <input type="number" className="input-box" placeholder="Days required" onChange={(e)=>{onInputChange(e)}} name="daysRequired" value={destinationData.daysRequired}></input>
                 <input type="text" className="input-box" placeholder="Brief description of the culture (max 30 words)" onChange={(e)=>{onInputChange(e)}} name="briefDescription" value={destinationData.briefDescription}></input>
-                <input type="text" className="input-box" placeholder="Detailed review" onChange={(e)=>{onInputChange(e)}} name="detailedReview" value={destinationData.detailedReview}></input>
+                <textarea type="text" style={{fontFamily:"sans-serif", lineHeight:"25px", fontSize:"17px"}} rows={5} className="input-box" placeholder="Detailed review" onChange={(e)=>{onInputChange(e)}} name="detailedReview" value={destinationData.detailedReview}></textarea>
                 <input type="text" className="input-box" placeholder="Photos' drive link (optional)" onChange={(e)=>{onInputChange(e)}} name="photoLink" value={destinationData.photoLink}></input>
-                <button type="submit" className="auth-btn" onClick = {()=>submitDestination()}>Add</button>
+                {
+                  props.page === "updateReview"
+                  ?
+                  <button type="submit" className="auth-btn" onClick = {()=>updateReview()}>Update</button>
+                  :
+                  <button type="submit" className="auth-btn" onClick = {()=>submitDestination()}>Add</button>
+                }
             </div>
         </div>
     );

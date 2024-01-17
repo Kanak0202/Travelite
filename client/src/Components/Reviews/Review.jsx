@@ -34,6 +34,26 @@ const Review = (props)=>{
         }
       }
 
+      const deleteReview = async(id)=>{
+        try{
+            let result = await fetch("http://localhost:8000/deleteReview", {
+                method:"DELETE",
+                body: JSON.stringify({id:id}),
+            headers: {
+                'Content-type': 'application/json',
+            }
+            });
+            if(!result){
+                console.log("Could not delete review");
+            }
+            const data = await result.json(result);
+            console.log(data);
+            props.func();
+        }catch(error){
+            console.error("Error deleting review:", error.message);
+        }
+      }
+
     return(
     <div className="main-review-container" style={{
         backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url(${reviewBack})`,
@@ -42,7 +62,7 @@ const Review = (props)=>{
       }}>
         <div className="review-container">
         {
-            props.page === "topUserReview" 
+            props.page === "topUserReview" || props.page === "uploads"
             ?
             <div style={{width:"100%"}}>
             <div style={{width:"100%"}}>
@@ -63,7 +83,7 @@ const Review = (props)=>{
         <></>
         }
         {
-            props.page === "topUserReview" 
+            props.page === "topUserReview" || props.page === "uploads"
             ?
             <></>
         :
@@ -90,7 +110,14 @@ const Review = (props)=>{
         <p style={{fontWeight:"600"}}>Budget(for 2 people): Rs. {review.budget} for {review.daysRequired} days</p>
     </div>
     <div className="detailed-btn-container">
-        <button onClick={()=>{openReview(review._id)}}>Read detailed review</button>
+        {props.page === "uploads" 
+        ? 
+        <div style={{width:"100%", display:"flex", alignItems:"center", justifyContent:"center"}}>
+        <button style={{width:"30%", textAlign:"center"}} onClick={()=>{navigate(`/update-review/${review._id}`)}}>Update</button>
+        <button style={{width:"30%", textAlign:"center", marginLeft:"10px"}} onClick={()=>{deleteReview(review._id)}}>Delete</button>
+        </div>
+        : 
+        <button onClick={()=>{openReview(review._id)}}>Read detailed review</button>}
     </div>
     </div>
     );
