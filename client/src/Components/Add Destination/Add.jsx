@@ -11,6 +11,7 @@ const destinationInitialValue = {
     city:"",
     country:"",
     budget:"",
+    timePeriod:"",
     daysRequired:"",
     briefDescription:"",
     detailedReview:"",
@@ -30,7 +31,7 @@ const Add = (props) => {
     const navigate = useNavigate();
 
     const submitDestination = ()=>{
-        if(!destinationData.place || !destinationData.touristAttractions || !destinationData.state || !destinationData.city || !destinationData.country || !destinationData.budget || !destinationData.briefDescription || !destinationData.daysRequired || !destinationData.detailedReview){
+        if(!destinationData.place || !destinationData.touristAttractions || !destinationData.state || !destinationData.city || !destinationData.country || !destinationData.budget || !destinationData.briefDescription || !destinationData.daysRequired || !destinationData.detailedReview || !destinationData.timePeriod){
             alert("Please enter all the fields");
         }else{
             addDestination();
@@ -103,6 +104,8 @@ const Add = (props) => {
             return;
           }
           const data = await result.json();
+          alert("Review updated successfully");
+          navigate(-1);
         }catch(error){
           console.error("Error fetching data:", error.message);
         }
@@ -122,6 +125,7 @@ const Add = (props) => {
                 <input type="text" className="input-box" placeholder="City or district or town located in" onChange={(e)=>{onInputChange(e)}} name="city" value={destinationData.city}></input>
                 <input type="text" className="input-box" placeholder="Country located in" onChange={(e)=>{onInputChange(e)}} name="country" value={destinationData.country}></input>
                 <input type="number" className="input-box" placeholder="Budget required for 2 persons (in INR)" onChange={(e)=>{onInputChange(e)}} name="budget" value={destinationData.budget}></input>
+                <input type="text" className="input-box" placeholder="Best time to visit (eg. October-December)" onChange={(e)=>{onInputChange(e)}} name="timePeriod" value={destinationData.timePeriod}></input>
                 <input type="number" className="input-box" placeholder="Days required" onChange={(e)=>{onInputChange(e)}} name="daysRequired" value={destinationData.daysRequired}></input>
                 <input type="text" className="input-box" placeholder="Brief description of the culture (max 30 words)" onChange={(e)=>{onInputChange(e)}} name="briefDescription" value={destinationData.briefDescription}></input>
                 <textarea type="text" style={{fontFamily:"sans-serif", lineHeight:"25px", fontSize:"17px"}} rows={5} className="input-box" placeholder="Detailed review" onChange={(e)=>{onInputChange(e)}} name="detailedReview" value={destinationData.detailedReview}></textarea>
