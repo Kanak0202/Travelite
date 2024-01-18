@@ -68,9 +68,9 @@ const Nav = () => {
       {isUserLoggedIn ? (
         <div className="auth-container">
           <ul>
-            <li>
+          <li>
               <Link className="" to="/contact" onClick={()=>navigate("/contact")}>
-                Contact Us
+                Review Us
               </Link>
             </li>
             <li onMouseEnter={() => setShowProfileDropdown(true)} onMouseLeave={() => setShowProfileDropdown(false)}>
@@ -106,6 +106,11 @@ const Nav = () => {
       ) : (
         <div className="auth-container">
           <ul>
+          <li>
+              <Link className="" to="/contact" onClick={()=>navigate("/contact")}>
+                Review Us
+              </Link>
+            </li>
             <li>
               <Link className="" to="/login">
                 Login

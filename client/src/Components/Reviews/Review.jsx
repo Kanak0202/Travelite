@@ -108,6 +108,13 @@ const Review = (props)=>{
         <p style={{fontWeight:"600", marginTop:"1em"}}>{review.briefDescription}</p>
         <p style={{fontWeight:800, fontSize:"1.1em"}}>Attractions: {review.touristAttractions}</p>
         <p style={{fontWeight:"600"}}>Budget(for 2 people): Rs. {review.budget} for {review.daysRequired} days</p>
+        {
+            review.timePeriod
+            ?
+            <p style={{fontWeight:"600"}}>Visit in the months of <span style={{fontWeight:"600", fontSize:"17px"}}>{review.timePeriod}</span></p>
+            :
+            <></>
+        }
     </div>
     <div className="detailed-btn-container">
         {props.page === "uploads" 
