@@ -114,6 +114,8 @@
     margin:auto;
     margin-top: 70px;
     padding-left: 45px;
+    display: flex;
+    align-items: center;
 }
 
 .place{

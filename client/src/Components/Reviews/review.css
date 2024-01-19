@@ -113,7 +113,7 @@
     height: 60%;
     width: 25%;
     border: 2px solid black;
-    position: absolute;
+    position: fixed;
     top: calc(50vh - 35%);
     left:calc(50vw - 15%);
     background-color: white;
@@ -138,4 +138,36 @@
   }
   .close-btn-container:hover{
     color: rgb(231, 18, 18);
+  }
+
+  .cc-btn{
+    top:7rem;
+    right: 3rem;
+    position: fixed;
+    height:2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: flex-start;
+    background-color: rgb(53, 52, 52);
+    color: white;
+    border-radius: 5px;
+    width:8rem;
+    height:3rem;
+    border:2px solid rgb(205, 205, 205);
+    box-shadow: 1px 1px 1px 1px rgba(139, 139, 139, 0.773);
+  }
+
+  .cc-btn:hover{
+    height:3.1rem;
+    width:8.1rem;
+    background-color: black;
+  }
+
+  .newimg{
+    position: fixed;
+    top:6rem;
+    right: 9rem;
+    height:2rem;
+    width:3rem;
+    z-index: 2;
   }

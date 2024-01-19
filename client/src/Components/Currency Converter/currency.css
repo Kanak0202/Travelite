@@ -1,0 +1,38 @@
+.currency-main-container{
+    width:20%;
+    padding-bottom: 30px;
+    position: fixed;
+    z-index: 1000;
+    border-radius: 5%;
+    right:0;
+    top:5rem;
+    background-image: linear-gradient(to bottom right, #FDABDD, #374A5A);
+}
+
+.currency-main-container input{
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    margin-right: 1em;
+}
+.currency-main-container p{
+    color: #fdf2f8;
+}
+.currency-main-container select{
+    padding: 5px;
+}
+
+.slidein{
+    animation: slideIn 0.2s ease-in;
+}
+
+@keyframes slideIn{
+    0%{
+        transform: translateX(150px);
+        opacity: 0.5;
+    }
+    100%{
+        transform: skew(0deg);
+        opacity: 1;
+    }
+}

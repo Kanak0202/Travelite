@@ -2,14 +2,18 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Review from "./Review";
 import defaultBackground from "./img/defaultBackground.jpg";
+import CurrencyConverter from "../Currency Converter/CurrencyConverter";
 //css
 import "./review.css";
 //icons
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
+//gif
+import newgif from "./img/newgif.gif";
 
 const PlaceReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [background, setBackground] = useState(defaultBackground);
+  const [openCurrencyConverter, setOpenCurrencyConverter] = useState(false);
   const navigate = useNavigate();
 
   const params = useParams();
@@ -67,7 +71,18 @@ const PlaceReviews = () => {
   }
 
   return (
-    <div className="place-review-page">
+    <div className="place-review-page" style={{position:"relative"}}>
+    <img className="newimg" src={newgif} alt="" />
+    <button className="cc-btn" onClick={()=>setOpenCurrencyConverter(true)}>
+      Currency Converter
+    </button>
+    {
+      openCurrencyConverter
+      ?
+      <CurrencyConverter func={()=>setOpenCurrencyConverter(false)}/>
+      :
+      <></>
+    }
       <div
         className="container"
         style={{

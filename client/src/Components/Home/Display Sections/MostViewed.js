@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import most from "../img/most.jpg";
+//icons
+import WhatshotIcon from '@mui/icons-material/Whatshot';
 
 const MostViewed = ()=>{
     const [places, setPlaces] = useState([]);
@@ -48,6 +50,9 @@ const MostViewed = ()=>{
     return(
         <div>
             <div className="main-container-most">
+                <div>
+                  <WhatshotIcon style={{fontSize:"2.5rem", marginRight:"2rem"}}/>
+                </div>
                 <h1 style={{fontSize:"33px"}}><span className="blink">Trending</span> Destinations</h1>
             </div>
             <div className="most-place-container">
