@@ -17,6 +17,7 @@ import Profile from './Components/User Info/Profile';
 import ScrollToTop from './ScrollToTop';
 import Uploads from './Components/User Info/Uploads';
 import UpdateReview from './Components/Reviews/Update/UpdateReview';
+import CurrencyConverter from './Components/Currency Converter/CurrencyConverter';
 
 
 function App() {
