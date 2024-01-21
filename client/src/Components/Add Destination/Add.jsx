@@ -2,6 +2,11 @@ import { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 // context data
 import { DataContext } from "../../context/DataProvider";
+import Photoframe from "../Photoframe/Photoframe";
+//images
+import photo1 from "./img/photo1.jpg"
+import photo2 from "./img/photo2.jpeg"
+import photo3 from "./img/photo3.jpeg"
 
 const destinationInitialValue = {
     userId:"",
@@ -113,6 +118,9 @@ const Add = (props) => {
 
     return (
         <div className="auth-form">
+        <Photoframe left="50px" image={photo1}/>
+        <Photoframe left="150px" image={photo2}/>
+        <Photoframe left="250px" image={photo3}/>
             {props.page === "updateReview"
             ?
             <h1>Update your Review</h1>

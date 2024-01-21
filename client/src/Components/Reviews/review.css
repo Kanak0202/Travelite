@@ -20,6 +20,21 @@
     margin: 50px 50px 0 100px;
   }
 
+  .heading-slide-in{
+    animation: headSlideIn 0.4s ease-in;
+}
+
+@keyframes headSlideIn{
+    0%{
+        opacity: 0.5;
+        font-size: 0;
+    }
+    100%{
+        transform: skew(0deg);
+        opacity: 1;
+    }
+}
+
 /* Review */
 
 .main-review-container{
@@ -144,24 +159,23 @@
     top:7rem;
     right: 3rem;
     position: fixed;
-    height:2rem;
-    font-size: 1rem;
     cursor: pointer;
-    align-self: flex-start;
-    background-color: rgb(53, 52, 52);
-    color: white;
     border-radius: 5px;
-    width:8rem;
-    height:3rem;
-    border:2px solid rgb(205, 205, 205);
-    box-shadow: 1px 1px 1px 1px rgba(139, 139, 139, 0.773);
+    width:4.1rem;
+    height:4.1rem;
+    border:none;
+    padding: none;
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .cc-btn:hover{
+  /* .cc-btn:hover{
     height:3.1rem;
     width:8.1rem;
     background-color: black;
-  }
+  } */
 
   .newimg{
     position: fixed;
@@ -170,4 +184,10 @@
     height:2rem;
     width:3rem;
     z-index: 2;
+  }
+
+  .curgif{
+    height:4rem;
+    width:4rem;
+    margin:none;
   }

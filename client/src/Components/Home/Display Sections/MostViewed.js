@@ -51,9 +51,9 @@ const MostViewed = ()=>{
         <div>
             <div className="main-container-most">
                 <div>
-                  <WhatshotIcon style={{fontSize:"2.5rem", marginRight:"2rem"}}/>
+                  <WhatshotIcon style={{fontSize:"2.5rem", marginRight:"2rem"}} className="blink"/>
                 </div>
-                <h1 style={{fontSize:"33px"}}><span className="blink">Trending</span> Destinations</h1>
+                <h1 style={{fontSize:"33px", marginBottom:"2rem"}}><span>Trending</span> destinations</h1>
             </div>
             <div className="most-place-container">
                 {places.map((place, index)=>{

@@ -116,11 +116,6 @@ const Nav = () => {
                 Login
               </Link>
             </li>
-            <li>
-              <Link className="" to="/signup">
-                Sign Up
-              </Link>
-            </li>
           </ul>
         </div>
       )}

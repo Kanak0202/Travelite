@@ -9,6 +9,7 @@ import "./review.css";
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 //gif
 import newgif from "./img/newgif.gif";
+import currencygif from "./img/currencyConvert.gif";
 
 const PlaceReviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -72,9 +73,9 @@ const PlaceReviews = () => {
 
   return (
     <div className="place-review-page" style={{position:"relative"}}>
-    <img className="newimg" src={newgif} alt="" />
+    {/* <img className="newimg" src={newgif} alt="" /> */}
     <button className="cc-btn" onClick={()=>setOpenCurrencyConverter(true)}>
-      Currency Converter
+      <img style={{margin:0, padding:0}} className="curgif" src={currencygif} alt="" />
     </button>
     {
       openCurrencyConverter
@@ -93,7 +94,7 @@ const PlaceReviews = () => {
           backgroundPosition: "bottom",
         }}
       >
-        <p className="reviews-for">Reviews for <span style={{fontSize:"60px"}}>{params.place}</span></p>
+        <p className="reviews-for heading-slide-in">Reviews for <span style={{fontSize:"60px"}} className="heading-slide-in">{params.place}</span></p>
       </div>
       <div className="all-reviews-container">
         {reviews.map((review, index) => (

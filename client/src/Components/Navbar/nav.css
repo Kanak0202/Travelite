@@ -6,6 +6,7 @@
     background-color: black;
     color: white;/* Change the text color as needed */ 
     position: relative;
+    box-shadow: 2px 2px 1px 3px rgb(63, 18, 18);
   }
   
   .logo-container {

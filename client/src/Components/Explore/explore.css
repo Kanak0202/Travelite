@@ -28,6 +28,7 @@
     justify-content: center;
     align-items: center;
     transition: all 0.2s ease-in-out;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .place-container:hover{
