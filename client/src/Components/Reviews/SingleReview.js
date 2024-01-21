@@ -7,6 +7,7 @@ import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 //context
 import { DataContext } from "../../context/DataProvider";
+import CurrencyConverter from "../Currency Converter/CurrencyConverter";
 
 const SingleReview = () => {
   const params = useParams();
@@ -14,6 +15,7 @@ const SingleReview = () => {
   const {account} = useContext(DataContext);
   const [likeCount, setLikeCount] = useState(0);
   const [likedByUser, setLikedByuser] = useState(false);
+  const [openCC, setOpenCC] = useState(false);
 
   const checkIfLiked = ()=>{
     for(let i = 0;i<review[0]?.likedBy.length;i++){
@@ -121,6 +123,10 @@ const likeDislike = async()=>{
         <div className="card">
             <p style={{margin:0, fontSize:"30px", fontWeight:800}}>Rs. {review[0]?.budget}</p>
             <p style={{margin:0, marginTop:"5px", fontSize:"18px"}}>for 2 people</p>
+            <button style={{marginTop:"10px", backgroundColor:"black", color:"white", cursor:"pointer"}} onClick={() => setOpenCC(true)}>Currency Converter</button>
+            {
+              openCC ? <CurrencyConverter func={()=>setOpenCC(false)}/> : <></>
+            }
         </div>
       </div>
       <div className="like-review-container">

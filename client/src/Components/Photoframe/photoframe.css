@@ -1,0 +1,39 @@
+.frame{
+    border:10px solid rgb(218, 157, 167);
+    margin:100px auto;
+    animation: swing 1.5s ease-in-out alternate infinite;
+    transform-origin: center -45px;
+    position: absolute;
+}
+.frame img{
+    object-fit: cover;
+}
+
+.frame::before{
+    content: " ";
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    height: 5px;
+    width: 5px;
+    top:-50px;
+    left: 50%;
+}
+
+.frame:after{
+    content: " ";
+    width: 4px;
+    height: 40px;
+    border: 1px solid rgb(94, 52, 59);
+    position: absolute;
+    top:-50px;
+    left: 50%;
+}
+
+@keyframes swing{
+    0%{
+        transform: rotate(-10deg);
+    }
+    100%{
+        transform: rotate(10deg);
+    }
+}

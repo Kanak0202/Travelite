@@ -13,8 +13,8 @@ const Landing = ()=>{
     return(
         <div className="head-section">
         <img src={landingImg} className="landing-image" alt="landing-image"></img>
-            <h1 className="landing-heading">Travelite</h1>
-            <p className="landing-sub">ENLIGHTNING TRAVELERS</p>
+            <h1 className="landing-heading vert-move">Travelite</h1>
+            <p className="landing-sub vert-move">ENLIGHTNING TRAVELERS</p>
             <button className="landing-explore-btn" onClick={goToExplore}>Explore now</button>
         </div>
     );
