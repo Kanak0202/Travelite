@@ -1,0 +1,21 @@
+.rating-container{
+    width: 100%;
+    display: grid;
+    margin-top: 3rem;
+    margin: auto;
+    margin-top: 5rem;
+}
+
+.star-section{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.star-indiv{
+    width: 25%;
+    margin: auto;
+    text-align: left;
+    padding: 10px;
+}
+

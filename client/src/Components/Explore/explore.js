@@ -4,6 +4,8 @@ import emptiness from "./img/emptmain.png";
 import background from "./img/background.jpg";
 import loadPlane from "./img/loadPlane.gif";
 import balloons1 from "./img/balloons1.jpg";
+import road from "./img/road.png";
+import wtrfall from "./img/wtr.jpg";
 import "./explore.css";
 
 const Explore = () => {
@@ -123,6 +125,8 @@ const Explore = () => {
     <img className="no-result-img" src={emptiness} alt="No results to display" />
   </div>
 )}
+
+{/* <img src={road} alt="" className="road-bckgrnd"/> */}
 
 {!loading && (searchPlaces.length > 0 || (key === "" && places.length > 0)) && (
   <div className="all-places-container">
