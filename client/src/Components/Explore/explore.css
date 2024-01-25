@@ -35,7 +35,9 @@
     box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 20%);
     cursor: pointer;
     transform: translate(0,-10px);
-    transition: all 0.4s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    transform: rotate(-3deg);
+    /* border-radius: 100%; */
 }
 
 
@@ -81,4 +83,13 @@
     color: white;
     font-weight: 600;
     font-size: 20px;
+  }
+
+  .road-bckgrnd{
+    position: fixed;
+    z-index: -10;
+    opacity: 0.1;
+    /* transform: rotate(25deg); */
+    height: 50rem;
+    left:0;
   }

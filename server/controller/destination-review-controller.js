@@ -10,6 +10,7 @@ export const add = async (request, response) => {
             dateCreated: currentdate
         };
         const savedReview = await Destination.create(newReview);
+        
         return response.status(200).json(newReview);
     } catch (err) {
         return response.status(500).json(err.message);

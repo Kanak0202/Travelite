@@ -31,6 +31,30 @@ const destinationSchema = mongoose.Schema({
         type:Number,
         required:true
     },
+    cleanliness:{
+        type:Number,
+        required:true
+    },
+    cuisine:{
+        type:Number,
+        required:true
+    },
+    money:{
+        type:Number,
+        required:true
+    },
+    veg:{
+        type:Number,
+        required:true
+    },
+    transportation:{
+        type:Number,
+        required:true
+    },
+    accommodation:{
+        type:Number,
+        required:true
+    },
     timePeriod:{
         type:String,
         required:true

@@ -3,10 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 // context data
 import { DataContext } from "../../context/DataProvider";
 import Photoframe from "../Photoframe/Photoframe";
+import Rating from "./Rating";
 //images
 import photo1 from "./img/photo1.jpg"
 import photo2 from "./img/photo2.jpeg"
 import photo3 from "./img/photo3.jpeg"
+//css
+import "./add.css"
 
 const destinationInitialValue = {
     userId:"",
@@ -20,13 +23,26 @@ const destinationInitialValue = {
     daysRequired:"",
     briefDescription:"",
     detailedReview:"",
-    photoLink:""
+    photoLink:"",
+    cleanliness:null,
+    cuisine:null,
+    money:null,
+    veg:null,
+    transportation:null,
+    accommodation:null,
 }
 
 const Add = (props) => {
     sessionStorage.setItem("previousPage", window.location.pathname);
     const [destinationData, setDestinationData] = useState(destinationInitialValue);
     const { account, setAccount } = useContext(DataContext);
+    const [cleanliness, setCleanliness] = useState(null);
+    const [money, setMoney] = useState(null);
+    const [veg, setVeg] = useState(null);
+    const [accommodation, setAccommodation] = useState(null);
+    const [transportation, setTransportation] = useState(null);
+    const [cuisine, setCuisine] = useState(null);
+    // console.log("Cleanliness: ",cleanliness, " Cuisine: ", cuisine, "money: ", money, "veg food: ", veg, "transportation: ", transportation, "accommodation: ", accommodation);
     const params = useParams();
 
     const onInputChange = (e)=>{
@@ -36,7 +52,7 @@ const Add = (props) => {
     const navigate = useNavigate();
 
     const submitDestination = ()=>{
-        if(!destinationData.place || !destinationData.touristAttractions || !destinationData.state || !destinationData.city || !destinationData.country || !destinationData.budget || !destinationData.briefDescription || !destinationData.daysRequired || !destinationData.detailedReview || !destinationData.timePeriod){
+        if(!destinationData.place || !destinationData.touristAttractions || !destinationData.state || !destinationData.city || !destinationData.country || !destinationData.budget || !destinationData.briefDescription || !destinationData.daysRequired || !destinationData.detailedReview || !destinationData.timePeriod || destinationData.cleanliness || destinationData.accommodation || destinationData.money || destinationData.veg || destinationData.transportation || destinationData.cuisine){
             alert("Please enter all the fields");
         }else{
             addDestination();
@@ -44,10 +60,16 @@ const Add = (props) => {
     }
 
     const addDestination = async () => {
-        const dataToSend = {
-          ...destinationData,
-          userId: account.userId,
-        };
+      const dataToSend = {
+        ...destinationData,
+        userId: account.userId,
+        cleanliness: cleanliness,
+        money: money,
+        veg: veg,
+        accommodation: accommodation,
+        transportation: transportation,
+        cuisine: cuisine,
+      };
       
         try {
           let result = await fetch("http://localhost:8000/add", {
@@ -64,6 +86,8 @@ const Add = (props) => {
           }
       
           result = await result.json();
+          
+          // console.log(result);
       
           if (result) {
             alert("Destination Added");
@@ -138,6 +162,36 @@ const Add = (props) => {
                 <input type="text" className="input-box" placeholder="Brief description of the culture (max 30 words)" onChange={(e)=>{onInputChange(e)}} name="briefDescription" value={destinationData.briefDescription}></input>
                 <textarea type="text" style={{fontFamily:"sans-serif", lineHeight:"25px", fontSize:"17px"}} rows={5} className="input-box" placeholder="Detailed review" onChange={(e)=>{onInputChange(e)}} name="detailedReview" value={destinationData.detailedReview}></textarea>
                 <input type="text" className="input-box" placeholder="Photos' drive link (optional)" onChange={(e)=>{onInputChange(e)}} name="photoLink" value={destinationData.photoLink}></input>
+                <div className="rating-container">
+                <div>
+                <p style={{fontSize:"1.3rem"}}>How much will you rate this place for - </p>
+                </div>
+                <div className="star-section">
+                <div className="star-indiv">
+                <p>Cleanliness <Rating setPropertyValue={(val)=>setCleanliness(val)}/></p>
+                </div>
+                <div className="star-indiv">
+                <p>Cuisine <Rating setPropertyValue={(val)=>setCuisine(val)}/></p>
+                </div>
+                <div className="star-indiv">
+                <p>Value for money <Rating setPropertyValue={(val)=>setMoney(val)}/></p>
+                </div>
+                <div className="star-indiv">
+                <p>Availability of veg food <Rating setPropertyValue={(val)=>setVeg(val)}/></p>
+                </div>
+                <div className="star-indiv">
+                <p>Availability of transportation <Rating setPropertyValue={(val)=>setTransportation(val)}/></p>
+                </div>
+                <div className="star-indiv">
+                <p>Accommodations <Rating setPropertyValue={(val)=>setAccommodation(val)}/></p>
+                </div>
+                </div>
+                
+                
+                
+                
+                
+                </div>
                 {
                   props.page === "updateReview"
                   ?
