@@ -1,0 +1,123 @@
+.landing2-main-container{
+    height:100vh;
+    width:100vw;
+    border:1px solid black;
+}
+
+/* Slide */
+
+.all-slides-container{
+    height:100vh;
+    width:max-content;
+    display: flex;
+    position: relative;
+}
+
+.slide-container{
+    height:90vh;
+    width:100vw;
+    flex: 1;
+    border:1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s linear;
+    opacity: 1;
+}
+
+.slide-hidden{
+    display: none;
+}
+
+.slide-img{
+    height: 100%;
+    width:100%;
+    object-fit: cover;
+}
+
+.gradient{
+    height:90vh;
+    width:100vw;
+    position: absolute;
+    opacity: 0.3;
+    z-index:5;
+}
+
+.slide-content{
+    z-index: 10;
+    position: absolute;
+    color: white;
+    text-transform: uppercase;
+}
+
+.main-name{
+    animation: slideIn 1s;
+}
+
+/* The typing effect */
+@keyframes slideIn {
+  from { left: 0; opacity: 0; }
+  to { left: 50%; opacity: 1; }
+}
+
+.tagline{
+    animation: fadeIn 2s ease-in;
+}
+
+/* The typewriter cursor effect */
+@keyframes fadeIn {
+    from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+.explore-btn{
+    position: absolute;
+    color: white;
+    background-color: black;
+    width:8vw;
+  height:35px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  top:50vh;
+  left: calc(50% - 4vw);
+  cursor: pointer;
+}
+
+
+
+.slide-content p{
+    font-family: 'Inter', sans-serif;
+}
+
+.arrow{
+    position: absolute;
+    z-index: 10;
+    color: white;
+}
+.next{
+    right: 6vw;
+}
+.prev{
+    left:6vw;
+}
+
+.arrow:hover {
+    height: 2vw;
+    width: 2vw;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+/* article.activeSlide {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  article.lastSlide {
+    transform: translateX(-100%);
+  }
+  article.nextSlide {
+    transform: translateX(100%);
+  } */
