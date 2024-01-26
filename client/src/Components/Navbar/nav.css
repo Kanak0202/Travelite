@@ -3,11 +3,30 @@
     justify-content: space-between;
     align-items: center;
     padding: 5px 25px;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     color: white;/* Change the text color as needed */ 
     position: relative;
-    box-shadow: 2px 2px 1px 3px rgb(63, 18, 18);
-  }
+    /* position: fixed; */
+    width: 98%;
+    height:4em;
+    z-index: 20;
+    top:0;
+    transition: background-color 0.3s ease;
+    animation: fadeInBackground 1s ease-out; /* Add fade-in animation */
+}
+
+/* @keyframes fadeInBackground {
+    from {
+        background-color: transparent;
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.537);
+    }
+}
+
+  .nav-on-scroll{
+    background-color:  black;
+  } */
   
   .logo-container {
     font-size: 1.5em;

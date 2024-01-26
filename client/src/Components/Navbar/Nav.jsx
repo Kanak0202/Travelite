@@ -35,8 +35,19 @@ const Nav = () => {
     return spaceIndex !== -1 ? account.name.substring(0, spaceIndex) : account.name;
   };
 
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('navbar');
+
+    // Check if the scroll position is greater than a certain threshold
+    if (window.scrollY > 50) {
+        navbar.classList.add('nav-on-scroll');
+    } else {
+        navbar.classList.remove('nav-on-scroll');
+    }
+});
+
   return (
-    <div className="nav-container">
+    <div className = "nav-container" id="navbar">
       <div className="logo-container">
         <p>Travelite</p>
       </div>

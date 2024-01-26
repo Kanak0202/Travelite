@@ -1,5 +1,5 @@
 .frame{
-    border:10px solid rgb(218, 157, 167);
+    border:10px solid rgb(128, 69, 79);
     margin:100px auto;
     animation: swing 1.5s ease-in-out alternate infinite;
     transform-origin: center -45px;
@@ -11,7 +11,7 @@
 
 .frame::before{
     content: " ";
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(76, 52, 52);
     position: absolute;
     height: 5px;
     width: 5px;

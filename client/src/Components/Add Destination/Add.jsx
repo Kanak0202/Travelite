@@ -42,6 +42,7 @@ const Add = (props) => {
     const [accommodation, setAccommodation] = useState(null);
     const [transportation, setTransportation] = useState(null);
     const [cuisine, setCuisine] = useState(null);
+    const [safetyOfWomen, setSafetyOfWomen] = useState(null);
     // console.log("Cleanliness: ",cleanliness, " Cuisine: ", cuisine, "money: ", money, "veg food: ", veg, "transportation: ", transportation, "accommodation: ", accommodation);
     const params = useParams();
 
@@ -52,7 +53,7 @@ const Add = (props) => {
     const navigate = useNavigate();
 
     const submitDestination = ()=>{
-        if(!destinationData.place || !destinationData.touristAttractions || !destinationData.state || !destinationData.city || !destinationData.country || !destinationData.budget || !destinationData.briefDescription || !destinationData.daysRequired || !destinationData.detailedReview || !destinationData.timePeriod || destinationData.cleanliness || destinationData.accommodation || destinationData.money || destinationData.veg || destinationData.transportation || destinationData.cuisine){
+        if(!destinationData.place || !destinationData.touristAttractions || !destinationData.state || !destinationData.city || !destinationData.country || !destinationData.budget || !destinationData.briefDescription || !destinationData.daysRequired || !destinationData.detailedReview || !destinationData.timePeriod || destinationData.cleanliness || destinationData.accommodation || destinationData.money || destinationData.veg || destinationData.transportation || destinationData.cuisine || destinationData.safetyOfWomen){
             alert("Please enter all the fields");
         }else{
             addDestination();
@@ -184,6 +185,9 @@ const Add = (props) => {
                 </div>
                 <div className="star-indiv">
                 <p>Accommodations <Rating setPropertyValue={(val)=>setAccommodation(val)}/></p>
+                </div>
+                <div className="star-indiv">
+                <p>Women Safety<Rating setPropertyValue={(val)=>setSafetyOfWomen(val)}/></p>
                 </div>
                 </div>
                 
