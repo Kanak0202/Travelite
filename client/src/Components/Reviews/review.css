@@ -191,3 +191,44 @@
     width:4rem;
     margin:none;
   }
+
+  @media only screen and (max-width:1400px){
+    .main-review-container{
+        width: 40%;
+        margin: 30px auto;
+    }
+
+    .all-reviews-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: end;
+        margin:30px;
+      }
+
+      .login-popup{
+        height: 60%;
+        width: 25%;
+    }
+  }
+  @media only screen and (max-width:800px){
+    .main-review-container{
+        width: 100%;
+        margin: 30px auto;
+    }
+
+    .all-reviews-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: end;
+        margin:30px;
+      }
+
+      .login-popup{
+        height: 60%;
+        width: 70%;
+        top: calc(50vh - 35%);
+        left:calc(50vw - 40%);
+    }      
+  }

@@ -12,6 +12,7 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 const Review = (props)=>{
     const review = props.review;
+    console.log(review);
     const navigate = useNavigate();
     const {account} = useContext(DataContext);
     const getDate = () => {
@@ -104,7 +105,7 @@ const Review = (props)=>{
             <></>}
         </div>
         }
-        
+        {review.averageRating ? <p style={{fontWeight:"600", marginTop:"1.5em", marginBottom:0}}>Rating: {review?.averageRating}/5</p> : <></>}
         <p style={{fontWeight:"600", marginTop:"1em"}}>{review.briefDescription}</p>
         <p style={{fontWeight:800, fontSize:"1.1em"}}>Attractions: {review.touristAttractions}</p>
         <p style={{fontWeight:"600"}}>Budget(for 2 people): Rs. {review.budget} for {review.daysRequired} days</p>

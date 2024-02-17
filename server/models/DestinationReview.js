@@ -59,6 +59,10 @@ const destinationSchema = mongoose.Schema({
         type:Number,
         required:true
     },
+    averageRating:{
+        type:Number,
+        required:true
+    },
     timePeriod:{
         type:String,
         required:true
