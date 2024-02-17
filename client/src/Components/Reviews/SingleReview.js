@@ -8,6 +8,8 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 //context
 import { DataContext } from "../../context/DataProvider";
 import CurrencyConverter from "../Currency Converter/CurrencyConverter";
+//components
+import SinglePageRating from "./Rating Display/SinglePageRating";
 
 const SingleReview = () => {
   const params = useParams();
@@ -24,6 +26,9 @@ const SingleReview = () => {
       }
     }
   }
+
+  const detail = review[0]?.detailedReview.split("\n");
+  console.log(detail);
 
   const getReview = async () => {
     try {
@@ -71,7 +76,6 @@ const likeDislike = async()=>{
       return;
     }
     const data = await result.json();
-    console.log(data);
     setLikeCount(data.likeCount);
     if(data.likeCount>0){
       for(let i = 0;i<data.likedBy.length;i++){
@@ -105,7 +109,12 @@ const likeDislike = async()=>{
       </div>
       </div>
       <div className="detailed-review-container">
-        <p>{review[0]?.detailedReview}</p>
+      <h1>Review</h1>
+        {detail?.map((rev, index)=>{
+          return(
+            <p>{rev}</p>
+          );
+        })}
       </div>
       <div className="card-container">
         <div className="card">
@@ -129,6 +138,7 @@ const likeDislike = async()=>{
             }
         </div>
       </div>
+      {review[0]?.safetyOfWomen ? <SinglePageRating review={review}/> : <></>}
       <div className="like-review-container">
         <p style={{margin:0, fontSize:"16px", fontWeight:600}}>Liked this review? Give a thumbs up</p>
         <button className="like-btn" style={{ marginLeft: "10px" }} onClick={likeDislike}>

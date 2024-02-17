@@ -70,6 +70,8 @@ const Add = (props) => {
         accommodation: accommodation,
         transportation: transportation,
         cuisine: cuisine,
+        safetyOfWomen:safetyOfWomen,
+        averageRating: parseFloat(((cleanliness + money + safetyOfWomen + accommodation + veg + transportation + cuisine) / 7).toFixed(2))
       };
       
         try {
@@ -121,10 +123,22 @@ const Add = (props) => {
       }, [params.id])
 
       const updateReview = async()=>{
+        const dataToSend = {
+          ...destinationData,
+          userId: account.userId,
+          cleanliness: cleanliness,
+          money: money,
+          veg: veg,
+          accommodation: accommodation,
+          transportation: transportation,
+          cuisine: cuisine,
+          safetyOfWomen:safetyOfWomen,
+          averageRating: parseFloat(((cleanliness + money + safetyOfWomen + accommodation + veg + transportation + cuisine) / 7).toFixed(2))
+        };
         try{
           let result = await fetch(`http://localhost:8000/update-review/${params.id}`,{
             method:"PUT",
-            body: JSON.stringify(destinationData),
+            body: JSON.stringify(dataToSend),
             headers: {
               'Content-Type': 'application/json',
             },

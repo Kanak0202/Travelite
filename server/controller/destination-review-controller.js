@@ -9,6 +9,8 @@ export const add = async (request, response) => {
             ...destination._doc, // Use _doc to get the raw document object
             dateCreated: currentdate
         };
+        
+        console.log(newReview);
         const savedReview = await Destination.create(newReview);
         
         return response.status(200).json(newReview);
@@ -104,6 +106,7 @@ export const likeDislikeReview = async (request, response) => {
 
 export const updateReview = async(request, response) =>{
     try{
+        console.log(request.body);
         let result = await Destination.updateOne({_id:request.params.id}, {$set: request.body });
         if(!result){
             return response.status(404).json({msg:"Review not found and updated"});

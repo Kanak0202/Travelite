@@ -36,3 +36,14 @@
         opacity: 1;
     }
 }
+
+@media only screen and (max-width:1200px){
+    .currency-main-container{
+        width:40%;
+    }
+}
+@media only screen and (max-width:900px){
+    .currency-main-container{
+        width:60%;
+    }
+}
