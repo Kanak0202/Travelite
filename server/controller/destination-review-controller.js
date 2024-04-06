@@ -8,6 +8,26 @@ export const add = async (request, response) => {
     try {
         const destination = new Destination(request.body);
         const currentdate = new Date();
+
+        const reviewAnalysis = {
+            review:destination.detailedReview
+        }
+
+        const sentimentResponse = await fetch("http://127.0.0.1:5000/", {
+            method:"POST",
+            body: JSON.stringify(reviewAnalysis),
+            headers: {
+              'Content-Type': 'application/json',
+            }
+        });
+        let sentiment = "";
+        if(sentimentResponse){
+            const data = await sentimentResponse.json();
+            console.log(data);
+            sentiment = data.sentiment;
+        }else{
+            return response.status(500).json(err.message);
+        }
               
         const newReview = {
             ...destination._doc, // Use _doc to get the raw document object
