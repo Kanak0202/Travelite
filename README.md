@@ -1,4 +1,4 @@
-# Travelite
+![tech stack](https://github.com/Kanak0202/Travelite/assets/95582926/7a21560c-8228-40f3-ad45-10b705bcbdd6)# Travelite
 
 Welcome to Travelite, your go-to platform for planning a seamless trip to your dream destination. Travelite is a responsive web application powered with AI, designed to enlighten and empower travelers. Here's what makes Travelite your ultimate travel companion:
 
@@ -42,4 +42,7 @@ The detailed review page shows the complete review of a destination provided by 
 
 ![localhost_3000_review_660f838b0a149ccf30cdc29e](https://github.com/Kanak0202/Travelite/assets/95582926/cb59cfd4-2b97-41e7-90ff-01c3c5dd636f)
 
+# Tech Used
+
+![tech stack](https://github.com/Kanak0202/Travelite/assets/95582926/353ab361-0489-4b40-afec-e19d361e4bfe)
 
