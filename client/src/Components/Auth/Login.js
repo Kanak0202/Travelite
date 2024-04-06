@@ -1,5 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { addUser } from "../../Redux Features/UserSlice";
 
 //context data
 import { DataContext } from "../../context/DataProvider";
@@ -16,6 +18,9 @@ const Login = ()=>{
     const [incorrectDetails, setIncorrectDetails] = useState(false);
 
     const {account, setAccount} = useContext(DataContext);
+
+    const user = useSelector((state) => state.user);
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
@@ -34,6 +39,7 @@ const Login = ()=>{
         result = await result.json();
         if (result.userData && result.userData.email && result.userData.name && result.userData.userId) {
             setIncorrectDetails(false);
+            dispatch(addUser(result.userData));
             setAccount({ email: result.userData.email, name: result.userData.name, userId: result.userData.userId});
             const previousPage = sessionStorage.getItem("previousPage");
         if (previousPage === "/signup") {

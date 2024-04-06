@@ -21,6 +21,19 @@ export const topUserReviews = async (request, response) => {
     }
 };
 
+export const updateUserRewardPoints = async(category, userId)=>{
+    const userFound = await User.findOne({_id:userId});
+    if(userFound){
+        if(category=='newReview'){
+            const newReward = userFound.rewardPoints + 50;
+            await User.updateOne({_id:userId}, {rewardPoints:newReward});
+        }else if(category=='likeCount'){
+            const newReward = userFound.rewardPoints + 5;
+            await User.updateOne({_id:userId}, {rewardPoints:newReward});
+        }
+    }
+}
+
 
 export const getUser = async(request, response)=>{
     try{

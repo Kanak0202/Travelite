@@ -44,15 +44,15 @@ const Profile = ()=>{
                 </div>
                 <div style={{width:"50%", margin:"auto", marginTop:"50px"}} className="card-container">
                     <div style={{width:"15%", height:"20%", margin:"auto", padding:"30px"}} className="card">
-                        <p style={{fontSize:"30px", margin:0}}>10+</p>
+                        <p style={{fontSize:"30px", margin:0}}>4</p>
                         <p style={{fontSize:"16px"}}>reviews added</p>
                     </div>
                     <div style={{width:"15%", height:"20%", margin:"auto", padding:"30px"}} className="card">
-                        <p style={{fontSize:"30px", margin:0}}>10000+</p>
+                        <p style={{fontSize:"30px", margin:0}}>1000+</p>
                         <p style={{fontSize:"16px"}}>views gained</p>
                     </div>
                     <div style={{width:"15%", height:"20%", margin:"auto", padding:"30px"}} className="card">
-                        <p style={{fontSize:"30px", margin:0}}>100+</p>
+                        <p style={{fontSize:"30px", margin:0}}>50+</p>
                         <p style={{fontSize:"16px"}}>people helped</p>
                     </div>
                 </div>

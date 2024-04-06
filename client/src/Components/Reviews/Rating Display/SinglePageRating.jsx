@@ -7,7 +7,6 @@ const SinglePageRating = (props) => {
     const review = props.review[0];
     const place = props.review[0].place;
     const name = props.review[0]?.userId?.name.split(" ")[0];
-    console.log(name);
 
     // Function to generate star icons based on the rating
     const renderStars = (rating) => {
@@ -29,7 +28,7 @@ const SinglePageRating = (props) => {
 
     return (
         <div className='rating-container-single'>
-        <h2>{name}'s Ratings of {place}</h2>
+        <h2>{name}'s Ratings for {place}</h2>
             <div className='single-page-rating-container'>
             <div className='indiv-rating'>
                     <p>Safety of Women: {renderStars(safetyOfWomen)}</p>

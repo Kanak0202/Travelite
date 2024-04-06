@@ -26,6 +26,9 @@ const userSchema = mongoose.Schema({
         type:String,
         required:true
     },
+    rewardPoints:{
+        type:Number
+    }
 });
 
 const user = mongoose.model('user', userSchema);

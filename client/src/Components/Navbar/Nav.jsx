@@ -7,6 +7,10 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import PlaceIcon from '@mui/icons-material/Place';
+import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+//redux
+import { useDispatch, useSelector } from "react-redux";
 
 // css
 import "./nav.css";
@@ -16,7 +20,7 @@ const Nav = () => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const { account, setAccount } = useContext(DataContext);
   const navigate = useNavigate();
-
+  const user = useSelector((state) => state.user);
   useEffect(() => {
     setIsUserLoggedIn(!!account.email);
   }, [account]);
@@ -92,6 +96,10 @@ const Nav = () => {
           <div className="profile-dropdown">
           <div className="blank"></div>
           <div className="dropdown">
+            <div className="list-item-dropdown">
+              <EmojiEventsIcon style={{marginRight:"10px", fontSize:"20px"}}/>
+              <p>My Points: {user?.user.rewardPoints}</p>
+            </div>
             <div className="list-item-dropdown" onClick={() => navigate(`/profile/${account.userId}`)}>
               <AccountBoxIcon style={{marginRight:"10px", fontSize:"20px"}}/>
               <p>My Profile</p>

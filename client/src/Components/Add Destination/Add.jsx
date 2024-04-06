@@ -10,6 +10,9 @@ import photo2 from "./img/photo2.jpeg"
 import photo3 from "./img/photo3.jpeg"
 //css
 import "./add.css"
+//redux
+import { addUser } from "../../Redux Features/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const destinationInitialValue = {
     userId:"",
@@ -45,6 +48,11 @@ const Add = (props) => {
     const [safetyOfWomen, setSafetyOfWomen] = useState(null);
     // console.log("Cleanliness: ",cleanliness, " Cuisine: ", cuisine, "money: ", money, "veg food: ", veg, "transportation: ", transportation, "accommodation: ", accommodation);
     const params = useParams();
+    const user = useSelector((state)=>state.user);
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+  console.log(loading);
+    console.log(user);
 
     const onInputChange = (e)=>{
         setDestinationData({...destinationData, [e.target.name] : e.target.value});
@@ -61,6 +69,8 @@ const Add = (props) => {
     }
 
     const addDestination = async () => {
+      console.log("Inside add fucntion");
+      setLoading(true);
       const dataToSend = {
         ...destinationData,
         userId: account.userId,
@@ -89,10 +99,14 @@ const Add = (props) => {
           }
       
           result = await result.json();
-          
-          // console.log(result);
       
           if (result) {
+            const updatedUser = {
+              ...user.user,
+              rewardPoints : user.user.rewardPoints + 50
+            }
+            dispatch(addUser(updatedUser))
+            setLoading(false);
             alert("Destination Added");
             navigate("/explore");
             setDestinationData(destinationInitialValue);
@@ -157,6 +171,14 @@ const Add = (props) => {
 
     return (
         <div className="auth-form">
+        {loading 
+        ?
+        <div className="loading-container">
+          <p>Please wait while we process your review 🙂</p>
+        </div>
+        :
+        <></>
+         }
         <Photoframe left="50px" image={photo1}/>
         <Photoframe left="150px" image={photo2}/>
         <Photoframe left="250px" image={photo3}/>

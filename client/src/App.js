@@ -19,7 +19,6 @@ import Uploads from './Components/User Info/Uploads';
 import UpdateReview from './Components/Reviews/Update/UpdateReview';
 import Rating from './Components/Add Destination/Rating';
 
-
 function App() {
   return (
     <DataProvider>

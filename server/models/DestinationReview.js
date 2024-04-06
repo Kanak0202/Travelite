@@ -94,6 +94,9 @@ const destinationSchema = mongoose.Schema({
     photoLink:{
         type:String,
         default:""
+    },
+    sentiment:{
+        type:String
     }
 });
 

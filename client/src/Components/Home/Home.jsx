@@ -13,7 +13,8 @@ const Home = ()=>{
             <div>
                 <Carousel />
             </div>
-            <MostViewed />
+            <MostViewed section="most-viewed"/>
+            <MostViewed section="top-rated"/>
         </div>
     );
 }

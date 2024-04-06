@@ -1,17 +1,23 @@
 import Destination from "../models/DestinationReview.js";
 
+import { updateAverageRatingandReviewCount } from "./place-controller.js";
+import { updateUserRewardPoints } from "./user-info-controller.js";
+
 export const add = async (request, response) => {
+    console.log("Inside add controller");
     try {
         const destination = new Destination(request.body);
         const currentdate = new Date();
-        
+              
         const newReview = {
             ...destination._doc, // Use _doc to get the raw document object
-            dateCreated: currentdate
+            dateCreated: currentdate,
+            sentiment: sentiment
         };
-        
-        console.log(newReview);
+
         const savedReview = await Destination.create(newReview);
+        updateUserRewardPoints('newReview',newReview.userId)
+        updateAverageRatingandReviewCount(savedReview.place, savedReview.averageRating, savedReview.safetyOfWomen, savedReview.accommodation, savedReview.cuisine, savedReview.transportation, savedReview.cleanliness, savedReview.money, savedReview.veg);
         
         return response.status(200).json(newReview);
     } catch (err) {
@@ -97,7 +103,9 @@ export const likeDislikeReview = async (request, response) => {
 
         const update = { likedBy: destination.likedBy, likeCount: destination.likedBy.length};
         let result = await Destination.findOneAndUpdate(filter, update, { new: true });
-
+        if(result.likeCount>=10){
+            updateUserRewardPoints('likeCount', result.userId);
+        }
         return response.status(200).json({likeCount:result.likeCount, likedBy:result.likedBy});
     } catch (error) {
         return response.status(500).json(error.message);
@@ -106,7 +114,6 @@ export const likeDislikeReview = async (request, response) => {
 
 export const updateReview = async(request, response) =>{
     try{
-        console.log(request.body);
         let result = await Destination.updateOne({_id:request.params.id}, {$set: request.body });
         if(!result){
             return response.status(404).json({msg:"Review not found and updated"});

@@ -9,7 +9,7 @@ export const signup = async(request, response)=>{
             return response.status(200).json({msg:'User already exists'});
         }
         const hashedPassword = await bcrypt.hash(request.body.password, 10);
-        const user = {name: request.body.name, password: hashedPassword, email:request.body.email, country:request.body.country, state:request.body.state, city:request.body.city};
+        const user = {name: request.body.name, password: hashedPassword, email:request.body.email, country:request.body.country, state:request.body.state, city:request.body.city, rewardPoints:100};
         const newUser = new User(user);
         await newUser.save();
         return response.status(200).json(newUser);
@@ -27,7 +27,7 @@ export const login = async(request, response)=>{
             }
             let match = await bcrypt.compare(request.body.password, user.password);
             if(match){
-                const userData = {name:user.name, email:user.email, userId:user._id}
+                const userData = {name:user.name, email:user.email, userId:user._id, rewardPoints:user.rewardPoints}
                 return response.status(200).json({userData: userData});
             }else if(!match){
                 return response.status(404).json({msg: "Invalid Password"});

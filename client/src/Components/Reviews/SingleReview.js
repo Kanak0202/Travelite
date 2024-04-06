@@ -27,8 +27,7 @@ const SingleReview = () => {
     }
   }
 
-  const detail = review[0]?.detailedReview.split("\n");
-  console.log(detail);
+  const detail = review[0]?.detailedReview?.split("\n");
 
   const getReview = async () => {
     try {
@@ -112,7 +111,7 @@ const likeDislike = async()=>{
       <h1>Review</h1>
         {detail?.map((rev, index)=>{
           return(
-            <p>{rev}</p>
+            <p key={index}>{rev}</p>
           );
         })}
       </div>
@@ -121,9 +120,10 @@ const likeDislike = async()=>{
             <p style={{margin:0, fontSize:"19px", fontWeight:800, lineHeight:"30px"}}>{review[0]?.touristAttractions}</p>
         </div>
         <div className="card">
-    <a href={review[0]?.photoLink} style={{textDecoration:"none", color:"black", fontSize:"25px"}} target="_blank" rel="noopener noreferrer">
-        View Photos
-    </a>
+        <a href={review[0]?.photoLink || undefined} style={{textDecoration:"none", color:"black", fontSize:"25px"}} target="_blank" rel="noopener noreferrer">
+    View Photos
+</a>
+
 </div>
         <div className="card">
             <p style={{margin:0, fontSize:"30px", fontWeight:800}}>{review[0]?.daysRequired} days</p>
