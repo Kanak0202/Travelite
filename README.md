@@ -21,3 +21,18 @@ Welcome to our Explore page! Discover the essence of every place added by our us
 
 ![explore](https://github.com/Kanak0202/Travelite/assets/95582926/d43f071d-ef61-42ca-8774-c541a7f0b88c)
 
+
+# Destination Reviews
+
+This is our Destination reviews page. It showcases all the reviews of a place which have been added. A review gives a brief overview for a place and provides important details like major tourist attractions, budget required, a brief and crisp desription and the overall sentiment of the user which is displayed by the border color of the review. A green border indicates that the review has been written in a positive tone, a red border indicates that the review has a negative sentiment and black refers to neutrality. You can visit the detailed review page clicking on the read button.
+
+![review_goa](https://github.com/Kanak0202/Travelite/assets/95582926/78eeb8dc-0152-4b6e-a2ab-03b61745701a)
+
+
+# Detailed Review
+
+The detailed review page shows the complete review of a destination provided by the traveler. It also displays has the sections for photos where you can view the photos that the user has uploaded. The individual ratings for different parameters are also provided.
+
+![localhost_3000_review_660f838b0a149ccf30cdc29e](https://github.com/Kanak0202/Travelite/assets/95582926/cb59cfd4-2b97-41e7-90ff-01c3c5dd636f)
+
+
