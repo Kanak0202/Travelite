@@ -11,6 +11,7 @@ Welcome to Travelite, your go-to platform for planning a seamless trip to your d
 * Sentiment Analyzer: Travelite processes your reviews and judges your sentiment so to showcase valuable insights for a destination.
 * Currency Converter: Travelite provides you with a currency converter to make your foreign trip planning easier.
 * Trip Planning: Discover and plan your next adventure by reading authentic reviews from the Travelite community.
+* Personalized Profiles: Travelite provides every reviewer their personalized profile and showcases their stats like number of reviews added, number of views gained and the amount of people they helped.
   
 ![travelite landing](https://github.com/Kanak0202/Travelite/assets/95582926/b86241e9-acdb-4dbf-b7a7-86595728ca8f)
 
@@ -20,6 +21,12 @@ Welcome to Travelite, your go-to platform for planning a seamless trip to your d
 Welcome to our Explore page! Discover the essence of every place added by our users. Explore new locations and find hidden gems with our user-friendly platform. Easily search for places based on country, state, and city. Find the perfect destination for your next adventure.
 
 ![explore](https://github.com/Kanak0202/Travelite/assets/95582926/d43f071d-ef61-42ca-8774-c541a7f0b88c)
+
+# Add Review
+
+Travelite asks the reviewer to fill all the important details that are necessary for a reader to know while planning his/her trip.
+
+![localhost_3000_add](https://github.com/Kanak0202/Travelite/assets/95582926/bc38805c-fd7b-424e-9c0e-ae1fc15608ad)
 
 
 # Destination Reviews
