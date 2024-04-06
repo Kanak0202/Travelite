@@ -7,6 +7,9 @@ import balloons1 from "./img/balloons1.jpg";
 import road from "./img/road.png";
 import wtrfall from "./img/wtr.jpg";
 import "./explore.css";
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { addPlace } from "../../Redux Features/PlaceSlice";
 
 const Explore = () => {
   sessionStorage.setItem("previousPage", window.location.pathname);
@@ -15,6 +18,9 @@ const Explore = () => {
   const [loading, setLoading] = useState(true);
   const [key, setKey] = useState("");
   const [searchPlaces, setSearchPlaces] = useState([]);
+  const placeArray = useSelector((state)=>state.viewedPlaces);
+  const dispatch = useDispatch();
+  console.log(placeArray);
 
   const navigate = useNavigate();
 
@@ -85,6 +91,7 @@ const Explore = () => {
 
   const openReviewsPage = async (place) => {
     try {
+      dispatch(addPlace(place));
       navigate(`/explore/${place}`);
       const apiRequest = fetch(`http://localhost:8000/place/${place}`, {
         method: "PATCH",
@@ -115,7 +122,7 @@ const Explore = () => {
           {(key && key.trim() !== "") ? <p>Results for {key}...</p> : null}
         </div>
       </div>
-      {loading && (
+      {loading && places?.length>0 && (
         <div className="loading-container">
           <img className="loading-img" src={loadPlane} alt="Loading..." />
         </div>
@@ -137,6 +144,9 @@ const Explore = () => {
     ))}
   </div>
 )}
+{
+  places.length===0 ? <div style={{width:"90vw", margin:"auto", marginTop:"100px"}}><img style={{width:"100%"}} src={emptiness} alt="" /></div> : <></>
+}
     </div>
   );
 };

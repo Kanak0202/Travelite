@@ -12,11 +12,10 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 const Review = (props)=>{
     const review = props.review;
-    console.log(review);
     const navigate = useNavigate();
     const {account} = useContext(DataContext);
     const getDate = () => {
-        const spaceIndex = review.dateCreated.indexOf("T");
+        const spaceIndex = review?.dateCreated.indexOf("T");
         return spaceIndex !== -1 ? review.dateCreated.substring(0, spaceIndex) : review.dateCreated;
       };
       const openReview = (id)=>{
@@ -60,6 +59,7 @@ const Review = (props)=>{
         backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url(${reviewBack})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        border: `5px solid ${review.sentiment === 'pos' ? 'green' : review.sentiment === 'neg' ? 'red' : 'black'}`,
       }}>
         <div className="review-container">
         {

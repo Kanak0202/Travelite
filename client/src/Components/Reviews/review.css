@@ -16,7 +16,7 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    align-items: end;
+    align-items: start;
     margin: 50px 50px 0 100px;
   }
 

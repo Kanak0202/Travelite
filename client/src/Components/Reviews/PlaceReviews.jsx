@@ -44,7 +44,6 @@ const PlaceReviews = () => {
       }
 
       const data = await result.json();
-      console.log(data.links.self);
       setBackground(data);
     } catch (error) {
       console.error(`Error fetching photo for ${place}: ${error.message}`);
@@ -62,7 +61,6 @@ const PlaceReviews = () => {
   }, [params.place]);
 
   const popupVisible = (call)=>{
-    console.log(call);
     var elem = document.getElementById('popupId');
     if(call==="visible"){
     elem.style.display = 'block';

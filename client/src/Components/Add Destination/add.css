@@ -19,3 +19,32 @@
     padding: 10px;
 }
 
+.loading-container{
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.693);
+    color: white;
+    top:-100px;
+    left:0;
+    width:100%;
+    height:100%;
+    position: fixed;
+}
+
+.loading-container p {
+    font-size: 4em;
+    font-weight: 700;
+    width:30em;
+    animation: type 5s steps(60, end) infinite;
+}
+
+@keyframes type {
+    from {
+        width: 0;
+    }
+}
+

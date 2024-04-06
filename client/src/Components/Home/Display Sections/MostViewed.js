@@ -4,8 +4,10 @@ import most from "../img/most.jpg";
 //icons
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 
-const MostViewed = ()=>{
-    const [places, setPlaces] = useState([]);
+const MostViewed = (props)=>{
+    const sectionName = props.section;
+    const [mostViewedplaces, setMostViewedplaces] = useState([]);
+    const [topRatedPlaces, setTopRatedPlaces] = useState([]);
     const navigate = useNavigate();
     const getMostViewedPlaces = async()=>{
         try{
@@ -14,13 +16,26 @@ const MostViewed = ()=>{
                 console.log("Error finding the places");
             }
             const data = await result.json();
-            setPlaces(data);
+            setMostViewedplaces(data);
+        }catch(error){
+            console.log(error);
+        }
+    }
+    const getTopRatedPlaces = async()=>{
+        try{
+            let result = await fetch("http://localhost:8000/top-rated-places");
+            if(!result){
+                console.log("Error finding the places");
+            }
+            const data = await result.json();
+            setTopRatedPlaces(data);
         }catch(error){
             console.log(error);
         }
     }
     useEffect(()=>{
         getMostViewedPlaces();
+        getTopRatedPlaces();
     },[])
 
     const openReviewsPage = async (place) => {
@@ -48,17 +63,31 @@ const MostViewed = ()=>{
 
 
     return(
+        <>
+          {mostViewedplaces.length > 0 && topRatedPlaces.length > 0
+        ?
         <div>
             <div className="main-container-most">
+                {sectionName === "most-viewed" ? 
                 <div>
-                  <WhatshotIcon style={{fontSize:"2.5rem", marginRight:"2rem"}} className="blink"/>
+                  <WhatshotIcon style={{fontSize:"2.5rem", marginRight:"1rem"}} className="blink"/>
                 </div>
-                <h1 style={{fontSize:"33px", marginBottom:"2rem"}}><span>#Trending</span> destinations</h1>
+                 : 
+                 <></>}
+                <h1 style={{fontSize:"33px", marginBottom:"2rem"}}>
+                  {sectionName === "most-viewed" ? 
+                  <span>Trending destinations</span>
+                  : 
+                  <span>#Top Rated</span>}
+                </h1>
             </div>
-            <div className="most-place-container">
-                {places.map((place, index)=>{
+            {
+              sectionName === "most-viewed"
+              ?
+              <div className="most-place-container">
+                {mostViewedplaces.map((place, index)=>{
                     return(
-                        <div className="place" onClick={()=>openReviewsPage(place.name)} style={{
+                        <div className="place" key={index} onClick={()=>openReviewsPage(place.name)} style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${most})`,
           backgroundSize: "cover",
           backgroundPosition: "bottom",
@@ -68,7 +97,29 @@ const MostViewed = ()=>{
                     );
                 })}
             </div>
+            :
+            <div className="most-place-container">
+                {topRatedPlaces?.map((place, index)=>{
+                    return(
+                        <div className="place" key={index} onClick={()=>openReviewsPage(place.name)} style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${most})`,
+          backgroundSize: "cover",
+          backgroundPosition: "bottom",
+          display:"flex",
+          flexDirection:"column",
+          justifyContent:"center",
+          alignItems:"center"
+        }}>
+                            <p>{place.name}</p>
+                        </div>
+                    );
+                })}
+            </div>
+            }
         </div>
+        :
+      <></>}
+        </>
     );
 }
 

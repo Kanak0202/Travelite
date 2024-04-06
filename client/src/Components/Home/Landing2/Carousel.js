@@ -8,7 +8,6 @@ const Carousel = () => {
     const [index, setIndex] = useState(0);
     const [item, setItem] = useState(data);
 
-    console.log(index);
 
     useEffect(()=>{
         const lastIndex = item.length-1;
