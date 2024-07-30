@@ -13,7 +13,7 @@ export const add = async (request, response) => {
             review:destination.detailedReview
         }
 
-        const sentimentResponse = await fetch("http://127.0.0.1:5000/", {
+        const sentimentResponse = await fetch("http://127.0.0.1:5000", {
             method:"POST",
             body: JSON.stringify(reviewAnalysis),
             headers: {

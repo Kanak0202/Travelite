@@ -123,9 +123,14 @@ const Explore = () => {
         </div>
       </div>
       {loading && places?.length>0 && (
+        <>
+        <div style={{height:"90px"}}>
+          <p style={{margin:"auto"}}>Loading...</p>
+        </div>
         <div className="loading-container">
           <img className="loading-img" src={loadPlane} alt="Loading..." />
         </div>
+        </>
       )}
       {!loading && (searchPlaces.length === 0 && key !== "") && (
   <div className="no-result-container">
