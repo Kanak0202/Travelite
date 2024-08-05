@@ -14,7 +14,7 @@ export const viewCountIncrease = async (request, response) => {
 
     return response.status(200).json({ viewCount: result.viewCount });
   } catch (error) {
-    return response.status(500).json({ msg: error.message });
+    return response.status(500).json({ error: error.message });
   }
 };
 
@@ -26,7 +26,7 @@ export const mostViewed = async(request, response)=>{
         }
         return response.status(200).json(places);
       } catch (error) {
-        return response.status(500).json({ msg: error.message });
+        return response.status(500).json({ error: error.message });
       }
 }
 
@@ -39,7 +39,7 @@ const calculateRating = (oldReviewCount, newSingleAverageRating, oldAverageRatin
     return newAverage;
 }
 
-export const updateAverageRatingandReviewCount = async (place, newSingleAverageRating, newWomenSafetyRating, newAccomodationRating, newCuisineRating, newTransportationRating, newCleanlinessRating, newValueForMoneyRating, newVegOptionsRating)=>{
+export const updateAverageRatingandReviewCount = async (place, newSingleAverageRating, newWomenSafetyRating, newAccommodationRating, newCuisineRating, newTransportationRating, newCleanlinessRating, newValueForMoneyRating, newVegOptionsRating)=>{
   const placeFound = await Place.findOne({name:place});
   if(placeFound){
     //for average rating
@@ -47,7 +47,7 @@ export const updateAverageRatingandReviewCount = async (place, newSingleAverageR
     const oldAverageRating = placeFound.averageRating;
     const newAverageRating = calculateRating(oldReviewCount, newSingleAverageRating, oldAverageRating);
     const newAverageWomenSafetyRating = calculateRating(oldReviewCount, newWomenSafetyRating, placeFound.averageWomenSafety);
-    const newAverageAccommodationRating = calculateRating(oldReviewCount, newAccomodationRating, placeFound.averageAccommodationRating);
+    const newAverageAccommodationRating = calculateRating(oldReviewCount, newAccommodationRating, placeFound.averageAccommodationRating);
     const newAverageCuisineRating = calculateRating(oldReviewCount, newCuisineRating, placeFound.averageCuisineRating);
     const newAverageTransportationRating = calculateRating(oldReviewCount, newTransportationRating, placeFound.averageTransportationRating);
     const newAverageCleanlinessRating = calculateRating(oldReviewCount, newCleanlinessRating, placeFound.averageCleanlinessRating);
@@ -63,7 +63,7 @@ export const updateAverageRatingandReviewCount = async (place, newSingleAverageR
       totalReviews:1,
       averageRating:newSingleAverageRating,
       averageWomenSafety:newWomenSafetyRating,
-      averageAccommodationRating:newAccomodationRating, 
+      averageAccommodationRating:newAccommodationRating, 
       averageCuisineRating:newCuisineRating, 
       averageTransportationRating:newTransportationRating, 
       averageCleanlinessRating:newCleanlinessRating, 
@@ -86,4 +86,29 @@ export const topRatedPlaces = async(request, response)=>{
     } catch (error) {
       return response.status(500).json({ msg: error.message });
     }
+}
+
+export const getAverageRating = async(request, response)=>{
+  try{
+    const {place} = request.body;
+    const placeData = await Place.findOne({name: place});
+    if(!placeData){
+      return response.status(400).json({error:error.message, msg: "Place not found"});
+    }
+    const {averageVegFoodAvailabilityRating, averageAccommodationRating, averageCleanlinessRating, averageCuisineRating, averageTransportationRating, averageValueForMoneyRating, averageWomenSafety} = placeData;
+    
+    const ratings = {
+      averageVegFoodAvailabilityRating, 
+      averageAccommodationRating, 
+      averageCleanlinessRating, 
+      averageCuisineRating, 
+      averageTransportationRating, 
+      averageValueForMoneyRating, 
+      averageWomenSafety
+    }
+
+    return response.status(200).json(ratings);    
+  }catch(error){
+    return response.status(500).json({error: error.message, msg: "Could not get average ratings"});
+  }
 }
