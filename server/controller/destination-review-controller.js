@@ -3,16 +3,42 @@ import Destination from "../models/DestinationReview.js";
 import { updateAverageRatingandReviewCount } from "./place-controller.js";
 import { updateUserRewardPoints } from "./user-info-controller.js";
 
+
+//publishing user's travel review
 export const add = async (request, response) => {
-    console.log("Inside add controller");
     try {
+        //get details
         const destination = new Destination(request.body);
+        
+        if (!(destination.place && 
+            destination.touristAttractions && 
+            destination.state && 
+            destination.city && 
+            destination.country && 
+            destination.budget !== null && 
+            destination.briefDescription && 
+            destination.daysRequired !== null && 
+            destination.detailedReview && 
+            destination.timePeriod && 
+            destination.cleanliness !== null && 
+            destination.accommodation !== null && 
+            destination.money !== null && 
+            destination.veg !== null && 
+            destination.transportation !== null && 
+            destination.cuisine !== null && 
+            destination.safetyOfWomen !== null)) {  
+                         
+          return response.status(400).json({ msg: "Incomplete review" });
+      }
+      
         const currentdate = new Date();
 
+        //fetching review for sentiment analysis
         const reviewAnalysis = {
             review:destination.detailedReview
         }
 
+        //getting sentiment
         const sentimentResponse = await fetch("http://127.0.0.1:5000", {
             method:"POST",
             body: JSON.stringify(reviewAnalysis),
@@ -23,10 +49,9 @@ export const add = async (request, response) => {
         let sentiment = "";
         if(sentimentResponse){
             const data = await sentimentResponse.json();
-            console.log(data);
             sentiment = data.sentiment;
         }else{
-            return response.status(500).json(err.message);
+            return response.status(500).json({error: err.message, msg: "Sentiment Analysis could not be done"});
         }
               
         const newReview = {
@@ -35,9 +60,15 @@ export const add = async (request, response) => {
             sentiment: sentiment
         };
 
+        //adding review to db
         const savedReview = await Destination.create(newReview);
-        updateUserRewardPoints('newReview',newReview.userId)
-        updateAverageRatingandReviewCount(savedReview.place, savedReview.averageRating, savedReview.safetyOfWomen, savedReview.accommodation, savedReview.cuisine, savedReview.transportation, savedReview.cleanliness, savedReview.money, savedReview.veg);
+        if(savedReview){
+            updateUserRewardPoints('newReview', newReview.userId);
+            //updating rating for the place whose review got published
+            updateAverageRatingandReviewCount(savedReview.place, savedReview.averageRating, savedReview.safetyOfWomen, savedReview.accommodation, savedReview.cuisine, savedReview.transportation, savedReview.cleanliness, savedReview.money, savedReview.veg);
+        }else{
+            return response.status(500).json({msg: "Could not save review"});
+        }
         
         return response.status(200).json(newReview);
     } catch (err) {

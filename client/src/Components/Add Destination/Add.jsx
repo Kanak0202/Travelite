@@ -51,8 +51,6 @@ const Add = (props) => {
     const user = useSelector((state)=>state.user);
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-  console.log(loading);
-    console.log(user);
 
     const onInputChange = (e)=>{
         setDestinationData({...destinationData, [e.target.name] : e.target.value});
@@ -60,13 +58,29 @@ const Add = (props) => {
 
     const navigate = useNavigate();
 
-    const submitDestination = ()=>{
-        if(!destinationData.place || !destinationData.touristAttractions || !destinationData.state || !destinationData.city || !destinationData.country || !destinationData.budget || !destinationData.briefDescription || !destinationData.daysRequired || !destinationData.detailedReview || !destinationData.timePeriod || destinationData.cleanliness || destinationData.accommodation || destinationData.money || destinationData.veg || destinationData.transportation || destinationData.cuisine || destinationData.safetyOfWomen){
-            alert("Please enter all the fields");
-        }else{
-            addDestination();
-        }
-    }
+    const submitDestination = () => {
+      if (!(destinationData.place && 
+        destinationData.touristAttractions && 
+        destinationData.state && 
+        destinationData.city && 
+        destinationData.country && 
+        destinationData.budget !== undefined && 
+        destinationData.briefDescription && 
+        destinationData.daysRequired !== undefined && 
+        destinationData.detailedReview && 
+        destinationData.timePeriod && 
+        destinationData.cleanliness !== undefined && 
+        destinationData.accommodation !== undefined && 
+        destinationData.money !== undefined && 
+        destinationData.veg !== undefined && 
+        destinationData.transportation !== undefined && 
+        destinationData.cuisine !== undefined && 
+        destinationData.safetyOfWomen !== undefined)) {
+      alert("Please enter all the fields");
+  } else {
+      addDestination();
+  }
+  }
 
     const addDestination = async () => {
       console.log("Inside add fucntion");
@@ -92,13 +106,19 @@ const Add = (props) => {
               'Content-type': 'application/json',
             },
           });
-      
+          
           if (!result.ok) {
+            setLoading(false);
+            alert("Invalid data, Please try again");
             console.error("Error adding destination:", result.statusText);
             return;
           }
       
           result = await result.json();
+          if(result.msg === "Incomplete review"){
+            setLoading(false);
+            alert("Please enter all the fields");
+          }
       
           if (result) {
             const updatedUser = {
@@ -112,6 +132,8 @@ const Add = (props) => {
             setDestinationData(destinationInitialValue);
           }
         } catch (error) {
+          setLoading(false);
+          alert("Invalid data, Please try again");
           console.error("Error adding destination:", error.message);
         }
       };
@@ -119,6 +141,8 @@ const Add = (props) => {
       const getReview = async () => {
         try {
           let result = await fetch(`http://localhost:8000/review/${params.id}`);
+          console.log("Result: ", result);
+          
           if (!result.ok) {
             console.log("Error fetching data");
             return;

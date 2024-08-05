@@ -15,9 +15,30 @@ const PlaceReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [background, setBackground] = useState(defaultBackground);
   const [openCurrencyConverter, setOpenCurrencyConverter] = useState(false);
+  const [averageRatings, setAverageRatings] = useState({});
   const navigate = useNavigate();
 
   const params = useParams();
+
+  const getAverageRatingsOfPlace = async() =>{
+    try{
+      let result = await fetch(`http://localhost:8000/place/averageRating`, {
+        method: "POST",
+        body: JSON.stringify({place: params.place}),
+        headers: {
+          'Content-type': 'application/json',
+        },
+      });
+      if (result.ok) {
+        const data = await result.json();
+        setAverageRatings(data);
+      } else {
+        console.log("Average ratings not obtained");
+      }
+    }catch(error){
+      console.error("Error fetching reviews:", error);
+    }
+  }
 
   const retrieveReviews = async () => {
     try {
@@ -58,6 +79,7 @@ const PlaceReviews = () => {
   useEffect(() => {
     // Call retrieveReviews only when params.place changes
     retrieveReviews();
+    getAverageRatingsOfPlace();
   }, [params.place]);
 
   const popupVisible = (call)=>{
@@ -93,6 +115,18 @@ const PlaceReviews = () => {
         }}
       >
         <p className="reviews-for heading-slide-in">Reviews for <span style={{fontSize:"60px"}} className="heading-slide-in">{params.place}</span></p>
+      </div>
+      <div className="average-ratings-container">
+        <p>Bangalore in Ratings</p>
+        <div className="average-ratings-display-container">
+        <p>Women's Safety: <span className="place-rating">{averageRatings.averageWomenSafety}</span></p>
+        <p>Accommodation: <span className="place-rating">{averageRatings.averageAccommodationRating}</span></p>
+        <p>Cleanliness: <span className="place-rating">{averageRatings.averageCleanlinessRating}</span></p>
+        <p>Cuisine: <span className="place-rating">{averageRatings.averageCuisineRating}</span></p>
+        <p>Transportation: <span className="place-rating">{averageRatings.averageTransportationRating}</span></p>
+        <p>Value For Money: <span className="place-rating">{averageRatings.averageValueForMoneyRating}</span></p>
+        <p>Veg Food Availability: <span className="place-rating">{averageRatings.averageVegFoodAvailabilityRating}</span></p>
+        </div>
       </div>
       <div className="all-reviews-container">
         {reviews.map((review, index) => (
