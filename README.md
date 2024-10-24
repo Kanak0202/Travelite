@@ -42,6 +42,22 @@ The detailed review page shows the complete review of a destination provided by 
 
 ![localhost_3000_review_660f838b0a149ccf30cdc29e](https://github.com/Kanak0202/Travelite/assets/95582926/cb59cfd4-2b97-41e7-90ff-01c3c5dd636f)
 
+# Run the App
+
+To run the app:
+Run the following commands:
+## Run Client-
+- cd ./client
+- npm start
+## Run Server-
+- cd ./server
+- npm start
+## Run ml server
+- cd ./ml
+- .\fastml\Scripts\activate
+- uvicorn app:app --port 5000 
+
+
 # Tech Used
 
 ![tech stack](https://github.com/Kanak0202/Travelite/assets/95582926/353ab361-0489-4b40-afec-e19d361e4bfe)
