@@ -30,17 +30,25 @@ const Login = ()=>{
 
     const login = async () => {
         let result = await fetch("http://localhost:8000/login", {
-            method: "post",
-            body: JSON.stringify(loginData),
-            headers: {
-                'Content-type': 'application/json',
-            }
+            method: "POST",
+          body: JSON.stringify(loginData),
+          headers: {
+              'Content-type': 'application/json',
+          },
+          credentials: 'include'
         });
+         // Check if the response is okay
+         if (!result.ok) {
+            const errorData = await result.json();
+            throw new Error(errorData.msg || 'Login failed');
+        }
         result = await result.json();
         if (result.userData && result.userData.email && result.userData.name && result.userData.userId) {
             setIncorrectDetails(false);
             dispatch(addUser(result.userData));
+            const dataOnLogin = { email: result.userData.email, name: result.userData.name, userId: result.userData.userId};
             setAccount({ email: result.userData.email, name: result.userData.name, userId: result.userData.userId});
+            localStorage.setItem("account", JSON.stringify(dataOnLogin));
             const previousPage = sessionStorage.getItem("previousPage");
         if (previousPage === "/signup") {
             navigate("/");

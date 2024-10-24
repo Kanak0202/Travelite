@@ -99,6 +99,8 @@ export const searchPlace = async(request, response)=>{
                 {country:{$regex:request.params.key, $options:'i'}}
             ]
         }).distinct('place');
+        console.log(result);
+        
         if(result){
             return response.status(200).json(result);
         }
