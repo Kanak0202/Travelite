@@ -26,7 +26,19 @@ const Explore = () => {
 
   const retrievePlaceNames = async () => {
     try {
-      const result = await fetch("http://localhost:8000/explore");
+      const result = await fetch("http://localhost:8000/explore",{
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include' // Important for cookies
+    });
+    console.log(result);
+    
+    if (!result.ok) {
+      const errorData = await result.json();
+      throw new Error(errorData.msg || 'Failed to retrieve place names');
+  }
       const data = await result.json();
       const uniquePlaces = Array.from(new Set([...places, ...data]));
       setPlaces(uniquePlaces);

@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import cookieParser from "cookie-parser";
 
 import Connection from './database/db.js';
 
@@ -12,8 +13,13 @@ dotenv.config();
 
 const app = express();
 
+const corsOptions = {
+    origin: ["http://localhost:3001"],
+    credentials: true
+  };
 
-app.use(cors());
+app.use(cors(corsOptions));
+app.use(cookieParser());
 app.use(bodyParser.json({extended:true}));
 app.use(bodyParser.urlencoded({extended:true}));
 

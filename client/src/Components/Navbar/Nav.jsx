@@ -25,8 +25,16 @@ const Nav = () => {
     setIsUserLoggedIn(!!account.email);
   }, [account]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const response = await fetch("http://localhost:8000/logout", {
+      method: "POST",
+      credentials: 'include' // Include cookies in requests
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+}
     setAccount({ email: "", name: "" });
+    localStorage.clear();
     navigate("/");
   };
 
