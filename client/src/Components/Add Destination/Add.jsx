@@ -29,6 +29,7 @@ const destinationInitialValue = {
     photoLink:"",
     cleanliness:null,
     cuisine:null,
+    safetyOfWomen:null,
     money:null,
     veg:null,
     transportation:null,
@@ -59,25 +60,29 @@ const Add = (props) => {
     const navigate = useNavigate();
 
     const submitDestination = () => {
-      if (!(destinationData.place && 
-        destinationData.touristAttractions && 
-        destinationData.state && 
-        destinationData.city && 
-        destinationData.country && 
-        destinationData.budget !== undefined && 
-        destinationData.briefDescription && 
-        destinationData.daysRequired !== undefined && 
-        destinationData.detailedReview && 
-        destinationData.timePeriod && 
-        destinationData.cleanliness !== undefined && 
-        destinationData.accommodation !== undefined && 
-        destinationData.money !== undefined && 
-        destinationData.veg !== undefined && 
-        destinationData.transportation !== undefined && 
-        destinationData.cuisine !== undefined && 
-        destinationData.safetyOfWomen !== undefined)) {
-      alert("Please enter all the fields");
-  } else {
+      const missingFields = [];
+
+if (!destinationData.place) missingFields.push('Place');
+if (!destinationData.touristAttractions) missingFields.push('Tourist Attractions');
+if (!destinationData.state) missingFields.push('State');
+if (!destinationData.city) missingFields.push('City');
+if (!destinationData.country) missingFields.push('Country');
+if (destinationData.budget === undefined) missingFields.push('Budget');
+if (!destinationData.briefDescription) missingFields.push('Brief Description');
+if (destinationData.daysRequired === undefined) missingFields.push('Days Required');
+if (!destinationData.detailedReview) missingFields.push('Detailed Review');
+if (!destinationData.timePeriod) missingFields.push('Time Period');
+if (destinationData.cleanliness === undefined) missingFields.push('Cleanliness');
+if (destinationData.accommodation === undefined) missingFields.push('Accommodation');
+if (destinationData.money === undefined) missingFields.push('Money');
+if (destinationData.veg === undefined) missingFields.push('Veg');
+if (destinationData.transportation === undefined) missingFields.push('Transportation');
+if (destinationData.cuisine === undefined) missingFields.push('Cuisine');
+if (destinationData.safetyOfWomen === undefined) missingFields.push('Safety of Women');
+
+if (missingFields.length > 0) {
+  alert(`Please enter the following fields: ${missingFields.join(', ')}`);
+} else {
       addDestination();
   }
   }
@@ -128,7 +133,7 @@ const Add = (props) => {
             dispatch(addUser(updatedUser))
             setLoading(false);
             alert("Destination Added");
-            navigate("/explore");
+            navigate(`/explore/${destinationData.place}`);
             setDestinationData(destinationInitialValue);
           }
         } catch (error) {
