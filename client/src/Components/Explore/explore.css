@@ -10,10 +10,11 @@
 }
 
 .all-places-container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    margin: 50px 100px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .place-container {
@@ -23,7 +24,7 @@
     height: 200px;
     width: 360px;
     /* margin-left: 50px; */
-    margin: auto;
+    margin:0 30px;
     margin-top: 50px;
     display: flex;
     justify-content: center;
@@ -110,7 +111,6 @@
     .place-container {
       height: 200px;
       width: 40%;
-      margin: auto;
       margin-top: 50px;
       display: flex;
       justify-content: center;
@@ -135,7 +135,6 @@
     .place-container {
       height: 200px;
       width: 90%;
-      margin: auto;
       margin-top: 50px;
       display: flex;
       justify-content: center;

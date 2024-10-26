@@ -29,39 +29,48 @@ const destinationSchema = mongoose.Schema({
     },
     budget:{
         type:Number,
-        required:true
+        required:true,
+        default: 0
     },
     cleanliness:{
         type:Number,
-        required:true
+        required:true,
+        default: 0
     },
     cuisine:{
         type:Number,
-        required:true
+        required:true,
+        default: 0
     },
     money:{
         type:Number,
-        required:true
+        required:true,
+        default: 0
     },
     veg:{
         type:Number,
-        required:true
+        required:true,
+        default: 0
     },
     transportation:{
         type:Number,
-        required:true
+        required:true,
+        default: 0
     },
     accommodation:{
         type:Number,
-        required:true
+        required:true,
+        default: 0
     },
     safetyOfWomen:{
         type:Number,
-        required:true
+        required:true,
+        default: 0
     },
     averageRating:{
         type:Number,
-        required:true
+        required:true,
+        default: 0
     },
     timePeriod:{
         type:String,
@@ -69,7 +78,8 @@ const destinationSchema = mongoose.Schema({
     },
     daysRequired:{
       type:Number,
-      required:true  
+      required:true,
+      default: 0
     },
     dateCreated:{
         type:Date, 
@@ -98,7 +108,7 @@ const destinationSchema = mongoose.Schema({
     sentiment:{
         type:String
     }
-});
+}, {timestamps: true});
 
 const destination = mongoose.model('destination', destinationSchema);
 
