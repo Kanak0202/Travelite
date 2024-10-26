@@ -1,203 +1,160 @@
 /* Landing Page */
 
-.landing-image{
-    width:100%;
+.landing-image {
+    width: 100%;
     position: relative;
 }
 
-.landing-heading{
+.landing-heading {
     position: absolute;
-    top:20%;
-    left:6%;
+    top: 20%;
+    left: 6%;
     letter-spacing: 4px;
     font-size: 6em;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    /* font-family: Arial, Helvetica, sans-serif; */
 }
 
-.landing-sub{
+.landing-sub {
     position: absolute;
-    top:43%;
-    left:7%;
+    top: 43%;
+    left: 7%;
     letter-spacing: 4px;
     font-size: 1.5em;
 }
 
-/* .vert-move {
-    -webkit-animation: mover 1s infinite  alternate;
-    animation: mover 1s infinite  alternate;
-}
-@keyframes mover {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-10px); }
-} */
-
-.landing-explore-btn{
+.landing-explore-btn {
     position: absolute;
-    top:60%;
+    top: 60%;
     left: 7%;
     color: white;
     background-color: black;
-    width:10%;
-  height:35px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.btn-jmp {
-    -webkit-animation: jmpTilt 0.5s infinite alternate, bounce 0.5s infinite alternate;
-    animation: jmpTilt 0.5s infinite alternate, bounce 1s infinite alternate;
-    transform-origin: center;
-}
-
-@keyframes jmpTilt {
-    0% {
-        transform: translateY(0) rotate(0);
-    }
-    100% {
-        transform: rotate(-5deg);
-    }
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
-}
-
-
-
-
-
-
-.landing-explore-btn:hover{
-    color: white;
-    /* background-color: rgb(48, 48, 48); */
+    width: 40%; /* Improved width for better accessibility on mobile */
+    max-width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
     cursor: pointer;
+}
+
+.landing-explore-btn:hover {
+    background-color: rgb(48, 48, 48);
     animation: none;
 }
 
-@media only screen and (max-width: 1200px) and (min-width:1000px) {
-    .landing-heading{
-        position: absolute;
-        letter-spacing: 4px;
+@media (max-width: 1200px) {
+    .landing-heading {
         font-size: 5em;
     }
-    .landing-sub{
-        position: absolute;
-        top:40%;
-        letter-spacing: 4px;
+    .landing-sub {
         font-size: 1.2em;
+        top: 40%;
     }
-    .landing-explore-btn{
-        top:55%;
+    .landing-explore-btn {
+        top: 55%;
     }
-  }
-@media only screen and (max-width: 1000px) and (min-width:600px) {
-    .landing-heading{
-        position: absolute;
-        top:90px;
-        left:45px;
-        letter-spacing: 4px;
+}
+
+@media (max-width: 1000px) {
+    .landing-heading {
         font-size: 3.5em;
+        top: 90px;
+        left: 45px;
     }
-    .landing-sub{
-        position: absolute;
-        top:185px;
-        left:52px;
-        letter-spacing: 4px;
+    .landing-sub {
         font-size: 1em;
+        top: 185px;
+        left: 52px;
     }
-    .landing-explore-btn{
-        top:40%;
-        font-size: 12px;
+    .landing-explore-btn {
+        font-size: 0.9em;
+        top: 50%;
     }
-  }
+}
 
-  @media only screen and (max-width: 600px) {
-    .landing-heading{
-        position: absolute;
-        top:75px;
-        left:25px;
-        letter-spacing: 4px;
+@media (max-width: 600px) {
+    .landing-heading {
         font-size: 3em;
+        top: 75px;
+        left: 25px;
     }
-    .landing-sub{
-        position: absolute;
-        top:150px;
-        left:30px;
-        letter-spacing: 4px;
+    .landing-sub {
         font-size: 0.8em;
+        top: 150px;
+        left: 30px;
     }
-    .landing-explore-btn{
-        top:30%;
-        font-size: 12px;
+    .landing-explore-btn {
+        font-size: 0.8em;
+        top: 45%;
     }
-  }
+}
 
-/* Most Viewed */
+/* Most Viewed Section */
 
-.most-place-container{
+.most-place-container {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    justify-content: center;
+    align-items: center;
     width: 90%;
-    margin:auto;
+    margin: auto;
     color: white;
-    font-size: 200%;
+    font-size: 2em;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.main-container-most{
+.main-container-most {
     width: 90%;
-    text-align: left;
-    margin:auto;
-    margin-top: 70px;
-    padding-left: 45px;
+    margin: auto;
+    margin-top: 10px;
+    padding-left: 20px;
     display: flex;
+    flex-direction: column; /* Stack on smaller screens */
     align-items: center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
 }
 
-.place{
+.place {
     border-radius: 5%;
+    height: 250px;
+    width: 100%;
+    max-width: 400px;
+    margin: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
     display: flex;
     align-items: center;
     justify-content: center;
-    height:250px;
-    width:400px;
-    margin:auto;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    
 }
 
-.place:hover{
+.place:hover {
     box-shadow: 2px 2px 2px 1px rgb(160, 160, 160);
-    transform: translate(0,-10px);
-    transition: all 0.3s ease-in-out;
+    transform: translateY(-10px);
 }
+
+@media (min-width: 600px) and (max-width: 900px) {
+    .most-place-container {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 600px) {
+    .most-place-container {
+        font-size: 1.2em;
+    }
+}
+
+/* Blink Animation */
 
 .blink {
-    font-size: 50px;
+    font-size: 3em; /* Scalable font size */
     margin-right: 10px;
     animation: blink-animation 1s steps(5, start) infinite;
-    -webkit-animation: blink-animation 1s steps(5, start) infinite;
-  }
-  @keyframes blink-animation {
-    to {
-      visibility: hidden;
-    }
-  }
-  @-webkit-keyframes blink-animation {
-    to {
-      visibility: hidden;
-    }
-  }
+}
 
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}
