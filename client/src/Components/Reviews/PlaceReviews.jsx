@@ -117,7 +117,7 @@ const PlaceReviews = () => {
         <p className="reviews-for heading-slide-in">Reviews for <span style={{fontSize:"60px"}} className="heading-slide-in">{params.place}</span></p>
       </div>
       <div className="average-ratings-container">
-        <p>Bangalore in Ratings</p>
+        <p style={{"font-size":"18px"}}>{params.place}'s Ratings</p>
         <div className="average-ratings-display-container">
         <p>Women's Safety: <span className="place-rating">{averageRatings.averageWomenSafety}</span></p>
         <p>Accommodation: <span className="place-rating">{averageRatings.averageAccommodationRating}</span></p>

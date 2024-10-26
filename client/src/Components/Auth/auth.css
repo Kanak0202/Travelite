@@ -1,36 +1,51 @@
-.auth-form{
+.auth-form {
     display: grid;
-    width: 50%;
-    margin:0 auto;
+    width: 90%;  /* Default to 90% width for smaller screens */
+    max-width: 1000px;  /* Limit maximum width */
+    margin: 0 auto;
     margin-top: 100px;
 }
 
-.input-box-container{
+.input-box-container {
     display: grid;
 }
 
-.input-box{
+.input-box {
     padding: 10px;
     margin-top: 15px;
     font-size: 16px;
 }
 
-.auth-btn{
+.auth-btn {
     background-color: black;
     color: white;
-    width:10%;
-    margin:20px auto 0;
-    height:35px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+    width: 100%; /* Adjust width for better button accessibility on small screens */
+    max-width: 120px;  /* Set a max width for the button */
+    margin: 20px auto 0;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
 }
-.auth-btn:hover{
+
+.auth-btn:hover {
     background-color: rgb(48, 48, 48);
 }
 
-.whitespace{
-    margin-top:7px;
+.whitespace {
+    margin-top: 7px;
 }
 
+/* Media query for larger screens */
+@media (min-width: 768px) {
+    .auth-form {
+        width: 60%;  /* Increase form width for tablets and larger screens */
+    }
+}
+
+@media (min-width: 1024px) {
+    .auth-form {
+        width: 40%; /* Narrower width for larger screens */
+    }
+}
