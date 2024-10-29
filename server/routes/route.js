@@ -12,7 +12,7 @@ const route = express.Router();
 route.post("/signup", signup);
 route.post("/login", login);
 route.post("/add", add); //adding destination
-route.get("/explore", verifyJwtToken, getUniquePlaces);
+route.get("/explore", getUniquePlaces);
 route.get("/search/:key", searchPlace);
 route.get("/explore/:key", placeReviews);
 route.get("/review/:key", singleReview);
