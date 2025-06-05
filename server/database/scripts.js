@@ -6,7 +6,7 @@ import place from "../models/Place.js";
 
 const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
-const uri = "mongodb+srv://kanakkhandelwal0202:WluzMgLBXjrOKnC6@cluster0.fsz85zm.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongoURI";
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
