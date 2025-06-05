@@ -171,12 +171,6 @@
     justify-content: center;
   }
 
-  /* .cc-btn:hover{
-    height:3.1rem;
-    width:8.1rem;
-    background-color: black;
-  } */
-
   .newimg{
     position: fixed;
     top:6rem;
@@ -249,6 +243,10 @@
   
   .average-ratings-display-container p{
     margin: 0.5em 2em !important;
+  }
+
+  .cc-btn{
+    top: 4.5rem;
   }
   }
 

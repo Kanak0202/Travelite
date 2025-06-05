@@ -39,11 +39,18 @@
 
 @media only screen and (max-width:1200px){
     .currency-main-container{
-        width:40%;
+        width:30%;
     }
 }
 @media only screen and (max-width:900px){
     .currency-main-container{
+        width:40%;
+        top: 4.5rem;
+    }
+}
+@media only screen and (max-width:600px){
+    .currency-main-container{
         width:60%;
+        top: 4.5rem;
     }
 }
