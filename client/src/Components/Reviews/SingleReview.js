@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 //css
 import "./single.css";
 //icons
-import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
-import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 //context
 import { DataContext } from "../../context/DataProvider";
 import CurrencyConverter from "../Currency Converter/CurrencyConverter";
@@ -14,18 +14,18 @@ import SinglePageRating from "./Rating Display/SinglePageRating";
 const SingleReview = () => {
   const params = useParams();
   const [review, setReview] = useState({});
-  const {account} = useContext(DataContext);
+  const { account } = useContext(DataContext);
   const [likeCount, setLikeCount] = useState(0);
   const [likedByUser, setLikedByuser] = useState(false);
   const [openCC, setOpenCC] = useState(false);
 
-  const checkIfLiked = ()=>{
-    for(let i = 0;i<review[0]?.likedBy.length;i++){
-      if(review[0]?.likedBy[i] === account.userId){
+  const checkIfLiked = () => {
+    for (let i = 0; i < review[0]?.likedBy.length; i++) {
+      if (review[0]?.likedBy[i] === account.userId) {
         setLikedByuser(true);
       }
     }
-  }
+  };
 
   const detail = review[0]?.detailedReview?.split("\n");
 
@@ -38,11 +38,11 @@ const SingleReview = () => {
       }
       const data = await result.json();
       setReview(data);
-      if(data[0].likeCount>0){
+      if (data[0].likeCount > 0) {
         setLikeCount(data[0]?.likeCount);
       }
-      for(let i = 0;i<data[0]?.likedBy.length;i++){
-        if(data[0]?.likedBy[i] === account.userId){
+      for (let i = 0; i < data[0]?.likedBy.length; i++) {
+        if (data[0]?.likedBy[i] === account.userId) {
           setLikedByuser(true);
         }
       }
@@ -58,96 +58,187 @@ const SingleReview = () => {
 
   const getDate = () => {
     const spaceIndex = review[0]?.dateCreated.indexOf("T");
-    return spaceIndex !== -1 ? review[0]?.dateCreated.substring(0, spaceIndex) : review[0]?.dateCreated;
-};
+    return spaceIndex !== -1
+      ? review[0]?.dateCreated.substring(0, spaceIndex)
+      : review[0]?.dateCreated;
+  };
 
-const likeDislike = async()=>{
-  try {
-    let result = await fetch(`http://localhost:8000/like-review/${params.id}`, {
-      method: "PATCH",
-      body: JSON.stringify({userId:account.userId}),
-      headers: {
-          'Content-type': 'application/json',
-      }
-  });
-    if (!result.ok) {
-      console.log("Error fetching data");
-      return;
-    }
-    const data = await result.json();
-    setLikeCount(data.likeCount);
-    if(data.likeCount>0){
-      for(let i = 0;i<data.likedBy.length;i++){
-        if(data.likedBy[i] === account.userId){
-          setLikedByuser(true);
-        }else{
-          setLikedByuser(false);
+  const likeDislike = async () => {
+    try {
+      let result = await fetch(
+        `http://localhost:8000/like-review/${params.id}`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({ userId: account.userId }),
+          headers: {
+            "Content-type": "application/json",
+          },
         }
+      );
+      if (!result.ok) {
+        console.log("Error fetching data");
+        return;
       }
-    }else{
-      setLikedByuser(false);
+      const data = await result.json();
+      setLikeCount(data.likeCount);
+      if (data.likeCount > 0) {
+        for (let i = 0; i < data.likedBy.length; i++) {
+          if (data.likedBy[i] === account.userId) {
+            setLikedByuser(true);
+          } else {
+            setLikedByuser(false);
+          }
+        }
+      } else {
+        setLikedByuser(false);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
-    
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  }
-}
-
+  };
 
   return (
     <div className="main-container">
-      <h1 style={{fontSize:"60px"}}>{review[0]?.place}</h1>
-      
+      <h1 style={{ fontSize: "60px" }}>{review[0]?.place}</h1>
+
       <div className="info-container">
-      <div>
-      {likeCount ? <p><span style={{fontWeight:600, fontSize:"17px"}}>{likeCount} </span>people found this review <span style={{fontWeight:600}}>helpful</span></p> : <></>}
-      </div>
-      <div className="user-info">
-        <p style={{margin:0}}><span style={{fontSize:"16px", fontWeight:500}}>by</span> {review[0]?.userId.name}</p>
-        <p style={{margin:0, marginTop:"2px", fontSize:"16px", fontWeight:500}}>{getDate()}</p>
-      </div>
+        <div>
+          {likeCount ? (
+            <p>
+              <span style={{ fontWeight: 600, fontSize: "17px" }}>
+                {likeCount}{" "}
+              </span>
+              people found this review{" "}
+              <span style={{ fontWeight: 600 }}>helpful</span>
+            </p>
+          ) : (
+            <></>
+          )}
+        </div>
+        <div className="user-info">
+          <p style={{ margin: 0 }}>
+            <span style={{ fontSize: "16px", fontWeight: 500 }}>by</span>{" "}
+            {review[0]?.userId.name}
+          </p>
+          <p
+            style={{
+              margin: 0,
+              marginTop: "2px",
+              fontSize: "16px",
+              fontWeight: 500,
+            }}
+          >
+            {getDate()}
+          </p>
+        </div>
       </div>
       <div className="detailed-review-container">
-      <h1>Review</h1>
-        {detail?.map((rev, index)=>{
-          return(
-            <p key={index}>{rev}</p>
-          );
+        <h1>Review</h1>
+        {detail?.map((rev, index) => {
+          return <p key={index}>{rev}</p>;
         })}
       </div>
       <div className="card-container">
-        <div className="card">
-            <p style={{margin:0, fontSize:"19px", fontWeight:800, lineHeight:"30px"}}>{review[0]?.touristAttractions}</p>
+        <div className="card" style={{
+  backgroundColor: 'rgba(255, 255, 102, 0.3)',  // Soft Yellow, 30% opacity
+  backdropFilter: 'blur(10px)',
+  WebkitBackdropFilter: 'blur(10px)',
+  borderRadius: '10px',
+  padding: '20px',
+  color: '#000',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)'}}>
+        <h4><u>Major Tourist Attractions</u></h4>
+          <p
+            style={{
+              margin: "20px",
+              fontSize: "19px",
+              fontWeight: 800,
+              lineHeight: "30px",
+            }}
+          >
+            {review[0]?.touristAttractions}
+          </p>
         </div>
-        <div className="card">
-        <a href={review[0]?.photoLink || undefined} style={{textDecoration:"none", color:"black", fontSize:"25px"}} target="_blank" rel="noopener noreferrer">
-    View Photos
-</a>
-
-</div>
-        <div className="card">
-            <p style={{margin:0, fontSize:"30px", fontWeight:800}}>{review[0]?.daysRequired} days</p>
-            <p style={{margin:0, marginTop:"5px", fontSize:"18px"}}>required</p>
+        <div className="card" style={{
+  backgroundColor: 'rgba(30, 144, 255, 0.3)',  // DodgerBlue, 30% opacity
+  backdropFilter: 'blur(10px)',
+  WebkitBackdropFilter: 'blur(10px)',
+  borderRadius: '10px',
+  padding: '20px',
+  color: '#000',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)'}}>
+          <a
+            href={review[0]?.photoLink || undefined}
+            style={{ textDecoration: "none", color: "black", fontSize: "25px" }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Photos
+          </a>
         </div>
-        <div className="card">
-            <p style={{margin:0, fontSize:"30px", fontWeight:800}}>Rs. {review[0]?.budget}</p>
-            <p style={{margin:0, marginTop:"5px", fontSize:"18px"}}>for 2 people</p>
-            <button style={{marginTop:"10px", backgroundColor:"black", color:"white", cursor:"pointer"}} onClick={() => setOpenCC(true)}>Currency Converter</button>
-            {
-              openCC ? <CurrencyConverter func={()=>setOpenCC(false)}/> : <></>
-            }
+        <div className="card" style={{
+  backgroundColor: 'rgba(60, 179, 113, 0.3)',  // MediumSeaGreen, 30% opacity
+  backdropFilter: 'blur(10px)',
+  WebkitBackdropFilter: 'blur(10px)',
+  borderRadius: '10px',
+  padding: '20px',
+  color: '#000',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)'}}>
+          <p style={{ margin: 0, fontSize: "30px", fontWeight: 800 }}>
+            {review[0]?.daysRequired} days
+          </p>
+          <p style={{ margin: 0, marginTop: "5px", fontSize: "18px" }}>
+            required
+          </p>
+        </div>
+        <div className="card" style={{
+  backgroundColor: 'rgba(255, 105, 180, 0.3)', // transparent pink
+  backdropFilter: 'blur(10px)',
+  WebkitBackdropFilter: 'blur(10px)',
+  borderRadius: '10px',
+  padding: '20px',
+  color: '#000',
+  border: '1px solid rgba(255, 255, 255, 0.2)',
+  boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)'}}>
+          <p style={{ margin: 0, fontSize: "30px", fontWeight: 800 }}>
+            Rs. {review[0]?.budget}
+          </p>
+          <p style={{ margin: 0, marginTop: "5px", fontSize: "18px" }}>
+            for 2 people
+          </p>
+          <button
+            style={{
+              marginTop: "10px",
+              backgroundColor: "black",
+              color: "white",
+              cursor: "pointer",
+            }}
+            onClick={() => setOpenCC(true)}
+          >
+            Currency Converter
+          </button>
+          {openCC ? <CurrencyConverter func={() => setOpenCC(false)} /> : <></>}
         </div>
       </div>
-      {review[0]?.safetyOfWomen ? <SinglePageRating review={review}/> : <></>}
+      {review[0]?.safetyOfWomen ? <SinglePageRating review={review} /> : <></>}
       <div className="like-review-container">
-        <p style={{margin:0, fontSize:"16px", fontWeight:600}}>Liked this review? Give a thumbs up</p>
-        <button className="like-btn" style={{ marginLeft: "10px" }} onClick={likeDislike}>
-  {likedByUser ? (
-    <ThumbUpIcon className="icon" color="primary" />
-  ) : (
-    <ThumbUpOutlinedIcon className="icon" color="primary" />
-  )}
-</button>
+        <p style={{ margin: 0, fontSize: "16px", fontWeight: 600 }}>
+          Liked this review? Give a thumbs up
+        </p>
+        <button
+          className="like-btn"
+          style={{ marginLeft: "10px" }}
+          onClick={likeDislike}
+        >
+          {likedByUser ? (
+            <ThumbUpIcon className="icon" color="primary" />
+          ) : (
+            <ThumbUpOutlinedIcon className="icon" color="primary" />
+          )}
+        </button>
       </div>
     </div>
   );
