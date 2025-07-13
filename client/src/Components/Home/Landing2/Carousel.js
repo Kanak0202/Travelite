@@ -47,7 +47,7 @@ const Carousel = () => {
               <p style={{ fontSize: "2vw", margin: 0, fontWeight: 700 }} className="tagline">
                 {dataItem.tagline}
               </p>
-              <button className="explore-btn btn-jmp" onClick={goToExplore}>Explore now</button>
+              <button className="explore-btn btn-jmp" onClick={goToExplore}>Explore Now</button>
             </div>
             <div
               className="gradient"
