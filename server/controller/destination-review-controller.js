@@ -6,6 +6,7 @@ import { updateUserRewardPoints } from "./user-info-controller.js";
 
 //publishing user's travel review
 export const add = async (request, response) => {
+    
     try {
         //get details
         const destination = new Destination(request.body);
@@ -37,22 +38,27 @@ export const add = async (request, response) => {
         const reviewAnalysis = {
             review:destination.detailedReview
         }
+        
 
-        //getting sentiment
-        const sentimentResponse = await fetch("http://127.0.0.1:5000", {
-            method:"POST",
-            body: JSON.stringify(reviewAnalysis),
-            headers: {
-              'Content-Type': 'application/json',
-            }
-        });
         let sentiment = "";
-        if(sentimentResponse){
-            const data = await sentimentResponse.json();
-            sentiment = data.sentiment;
-        }else{
-            return response.status(500).json({error: err.message, msg: "Sentiment Analysis could not be done"});
+
+try {
+    const sentimentResponse = await fetch("http://127.0.0.1:5000", {
+        method: "POST",
+        body: JSON.stringify(reviewAnalysis),
+        headers: {
+            'Content-Type': 'application/json',
         }
+    });
+
+    const data = await sentimentResponse.json();
+    sentiment = data.sentiment;
+
+} catch (err) {
+    console.error("Sentiment analysis error:", err.message);
+    sentiment= "pending"
+}
+
               
         const newReview = {
             ...destination._doc, // Use _doc to get the raw document object

@@ -128,6 +128,27 @@ const PlaceReviews = () => {
         <p>Veg Food Availability: <span className="place-rating">{averageRatings.averageVegFoodAvailabilityRating}</span></p>
         </div>
       </div>
+      <div className="color-indicator">
+        <p>Color Indicator</p>
+        <div className="review-colors">
+          <div className="color-meaning">
+            <div className="color-box" style={{border: "2px solid green"}}></div>
+            <p>: Positive</p>
+          </div>
+          <div className="color-meaning">
+            <div className="color-box" style={{border: "2px solid black"}}></div>
+            <p>: Neutral</p>
+          </div>
+          <div className="color-meaning">
+            <div className="color-box" style={{border: "2px solid red"}}></div>
+            <p>: Negative</p>
+          </div>
+          <div className="color-meaning">
+            <div className="color-box" style={{border: "2px solid orange"}}></div>
+            <p>: Pending</p>
+          </div>
+        </div>
+      </div>
       <div className="all-reviews-container">
         {reviews.map((review, index) => (
           <Review key={index} review={review} func={popupVisible}/>
