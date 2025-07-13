@@ -15,7 +15,7 @@ const Landing = ()=>{
         <img src={landingImg} className="landing-image" alt="landing-image"></img>
             <h1 className="landing-heading vert-move">Travelite</h1>
             <p className="landing-sub vert-move">ENLIGHTNING TRAVELERS</p>
-            <button className="" onClick={goToExplore}>Explore now</button>
+            <button className="explore-btn-home" onClick={goToExplore}>Explore Now</button>
         </div>
     );
 }
