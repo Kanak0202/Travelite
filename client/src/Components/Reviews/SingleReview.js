@@ -31,7 +31,7 @@ const SingleReview = () => {
 
   const getReview = async () => {
     try {
-      let result = await fetch(`http://localhost:8000/review/${params.id}`);
+      let result = await fetch(`${process.env.REACT_APP_URL}/review/${params.id}`);
       if (!result.ok) {
         console.log("Error fetching data");
         return;
@@ -66,7 +66,7 @@ const SingleReview = () => {
   const likeDislike = async () => {
     try {
       let result = await fetch(
-        `http://localhost:8000/like-review/${params.id}`,
+        `${process.env.REACT_APP_URL}/like-review/${params.id}`,
         {
           method: "PATCH",
           body: JSON.stringify({ userId: account.userId }),

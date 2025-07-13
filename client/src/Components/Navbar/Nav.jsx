@@ -23,7 +23,7 @@ const Nav = () => {
   }, [account]);
 
   const handleLogout = async () => {
-    const response = await fetch("http://localhost:8000/logout", {
+    const response = await fetch(`${process.env.REACT_APP_URL}/logout`, {
       method: "POST",
       credentials: 'include'
     });

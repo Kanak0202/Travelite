@@ -104,7 +104,7 @@ if (missingFields.length > 0) {
       };
       
         try {
-          let result = await fetch("http://localhost:8000/add", {
+          let result = await fetch(`${process.env.REACT_APP_URL}/add`, {
             method: "POST",
             body: JSON.stringify(dataToSend),
             headers: {
@@ -145,7 +145,7 @@ if (missingFields.length > 0) {
 
       const getReview = async () => {
         try {
-          let result = await fetch(`http://localhost:8000/review/${params.id}`);
+          let result = await fetch(`${process.env.REACT_APP_URL}/review/${params.id}`);
           console.log("Result: ", result);
           
           if (!result.ok) {
@@ -179,7 +179,7 @@ if (missingFields.length > 0) {
           averageRating: parseFloat(((cleanliness + money + safetyOfWomen + accommodation + veg + transportation + cuisine) / 7).toFixed(2))
         };
         try{
-          let result = await fetch(`http://localhost:8000/update-review/${params.id}`,{
+          let result = await fetch(`${process.env.REACT_APP_URL}/update-review/${params.id}`,{
             method:"PUT",
             body: JSON.stringify(dataToSend),
             headers: {

@@ -8,7 +8,7 @@ const Uploads = ()=>{
     const params = useParams();
     const retrieveReviews = async () => {
         try {
-          let result = await fetch(`http://localhost:8000/my-uploads/${params.id}?type=uploads`);
+          let result = await fetch(`${process.env.REACT_APP_URL}/${params.id}?type=uploads`);
           if (result.ok) {
             const data = await result.json();
             setReviews(data);

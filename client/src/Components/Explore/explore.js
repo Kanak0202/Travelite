@@ -26,7 +26,7 @@ const Explore = () => {
 
   const retrievePlaceNames = async () => {
     try {
-      const result = await fetch("http://localhost:8000/explore",{
+      const result = await fetch(`${process.env.REACT_APP_URL}/explore`,{
         method: "GET",
         headers: {
             'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ const Explore = () => {
     let searchKey = e.target.value;
     if(searchKey){
       setKey(searchKey);
-      let result = await fetch(`http://localhost:8000/search/${searchKey}`);
+      let result = await fetch(`${process.env.REACT_APP_URL}/search/${searchKey}`);
       result = await result.json();
       setSearchPlaces(result);
     } else if(searchKey === ""){
@@ -105,7 +105,7 @@ const Explore = () => {
     try {
       dispatch(addPlace(place));
       navigate(`/explore/${place}`);
-      const apiRequest = fetch(`http://localhost:8000/place/${place}`, {
+      const apiRequest = fetch(`${process.env.REACT_APP_URL}/place/${place}`, {
         method: "PATCH",
         headers: {
           'Content-Type': 'application/json',

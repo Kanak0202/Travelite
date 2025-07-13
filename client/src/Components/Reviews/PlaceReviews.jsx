@@ -22,7 +22,7 @@ const PlaceReviews = () => {
 
   const getAverageRatingsOfPlace = async() =>{
     try{
-      let result = await fetch(`http://localhost:8000/place/averageRating`, {
+      let result = await fetch(`${process.env.REACT_APP_URL}/place/averageRating`, {
         method: "POST",
         body: JSON.stringify({place: params.place}),
         headers: {
@@ -42,7 +42,7 @@ const PlaceReviews = () => {
 
   const retrieveReviews = async () => {
     try {
-      let result = await fetch(`http://localhost:8000/explore/${params.place}`);
+      let result = await fetch(`${process.env.REACT_APP_URL}/explore/${params.place}`);
       if (result.ok) {
         const data = await result.json();
         setReviews(data);

@@ -9,7 +9,7 @@ const TopReviews = ()=>{
     const params = useParams();
     const retrieveReviews = async () => {
       try {
-        let result = await fetch(`http://localhost:8000/topUserReviews/${params.id}?type=topReviews`, {
+        let result = await fetch(`${process.env.REACT_APP_URL}/${params.id}?type=topReviews`, {
           method: "GET",
         });
         if (result.ok) {

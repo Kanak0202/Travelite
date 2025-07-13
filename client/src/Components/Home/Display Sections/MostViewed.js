@@ -11,7 +11,7 @@ const MostViewed = (props)=>{
     const navigate = useNavigate();
     const getMostViewedPlaces = async()=>{
         try{
-            let result = await fetch("http://localhost:8000/most-viewed-place");
+            let result = await fetch(`${process.env.REACT_APP_URL}/most-viewed-place`);
             if(!result){
                 console.log("Error finding the places");
             }
@@ -23,7 +23,7 @@ const MostViewed = (props)=>{
     }
     const getTopRatedPlaces = async()=>{
         try{
-            let result = await fetch("http://localhost:8000/top-rated-places");
+            let result = await fetch(`${process.env.REACT_APP_URL}/top-rated-places`);
             if(!result){
                 console.log("Error finding the places");
             }
@@ -41,7 +41,7 @@ const MostViewed = (props)=>{
     const openReviewsPage = async (place) => {
         try {
           navigate(`/explore/${place}`);
-          const apiRequest = fetch(`http://localhost:8000/place/${place}`, {
+          const apiRequest = fetch(`${process.env.REACT_APP_URL}/place/${place}`, {
             method: "PATCH",
             headers: {
               'Content-Type': 'application/json',

@@ -36,7 +36,7 @@ const Review = (props)=>{
 
       const deleteReview = async(id)=>{
         try{
-            let result = await fetch("http://localhost:8000/deleteReview", {
+            let result = await fetch(`${process.env.REACT_APP_URL}/deleteReview`, {
                 method:"DELETE",
                 body: JSON.stringify({id:id}),
             headers: {

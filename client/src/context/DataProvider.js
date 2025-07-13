@@ -9,7 +9,7 @@ const DataProvider = ({ children }) => {
 
     const refreshAccessToken = async () => {
         try {
-            const response = await fetch("http://localhost:8000/refresh-token", {
+            const response = await fetch(`${process.env.REACT_APP_URL}/refresh-token`, {
                 method: "POST",
                 credentials: 'include' // Include cookies in requests
             });

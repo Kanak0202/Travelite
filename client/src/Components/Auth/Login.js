@@ -29,7 +29,7 @@ const Login = ()=>{
     }
 
     const login = async () => {
-        let result = await fetch("http://localhost:8000/login", {
+        let result = await fetch(`${process.env.REACT_APP_URL}/login`, {
             method: "POST",
           body: JSON.stringify(loginData),
           headers: {

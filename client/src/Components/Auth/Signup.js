@@ -24,7 +24,7 @@ const Signup = ()=>{
     }
 
     const register = async ()=>{
-        let result = await fetch("http://localhost:8000/signup",{
+        let result = await fetch(`${process.env.REACT_APP_URL}/signup`,{
                 method:"post",
                 body:JSON.stringify(signup),
                 headers:{

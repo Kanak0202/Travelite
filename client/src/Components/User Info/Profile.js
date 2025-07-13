@@ -12,7 +12,7 @@ const Profile = ()=>{
     const [userData, setUserData] = useState([]);
     const getUser = async()=>{
         try{
-            let result = await fetch(`http://localhost:8000/profile/${params.id}`);
+            let result = await fetch(`${process.env.REACT_APP_URL}/${params.id}`);
             if(result){
                 const data = await result.json();
                 setUserData(data);
