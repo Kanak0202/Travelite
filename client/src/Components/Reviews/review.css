@@ -276,3 +276,31 @@
 .place-rating{
   font-size: 1.2em;
 }
+
+.color-indicator{
+  width: 100%;
+  font-size: 12px;
+  border: 1px solid black;
+  margin-left: auto;
+}
+
+.review-colors{
+  width: 100%;
+  align-items: end;
+  align-content: end;
+  display: flex;
+  flex-direction: row;
+}
+
+.color-meaning{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-box{
+  width:5%;
+  height:0;
+  margin:5px
+}

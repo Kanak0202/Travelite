@@ -18,6 +18,7 @@ import ScrollToTop from './ScrollToTop';
 import Uploads from './Components/User Info/Uploads';
 import UpdateReview from './Components/Reviews/Update/UpdateReview';
 import Rating from './Components/Add Destination/Rating';
+import ReviewUs from './Components/Review Us/reviewUs';
 
 function App() {
   return (
@@ -33,12 +34,14 @@ function App() {
         <Route path="/explore" element={<Explore />} />
         <Route path="/explore/:place" element={<PlaceReviews />} />
         <Route path="/rating" element={<Rating />} />
+        <Route path="/contact" element={<ReviewUs />} />
         <Route element={<PrivateComponent />}>
         <Route path="/add" element={<Add />} />
         <Route path="/review/:id" element={<SingleReview />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/my-uploads/:id" element={<Uploads />} />
         <Route path="/update-review/:id" element={<UpdateReview />} />
+        <Route path="/places-visited" element={<ReviewUs />} />
         </Route>
       </Routes>
     </BrowserRouter>

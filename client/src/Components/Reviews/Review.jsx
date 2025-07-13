@@ -59,7 +59,7 @@ const Review = (props)=>{
         backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), url(${reviewBack})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        border: `5px solid ${review.sentiment === 'pos' ? 'green' : review.sentiment === 'neg' ? 'red' : 'black'}`,
+        border: `5px solid ${review.sentiment === 'pos' ? 'green' : review.sentiment === 'neg' ? 'red' : review.sentiment === 'pending' ? 'orange' : 'black'}`,
       }}>
         <div className="review-container">
         {
