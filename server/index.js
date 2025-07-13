@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-    origin: ["http://localhost:3001", "http://localhost:3000", "https://travelite-ok.netlify.app/"],
+    origin: ["http://localhost:3001", "http://localhost:3000", "https://travelite-ok.netlify.app"],
     credentials: true
   };
 
